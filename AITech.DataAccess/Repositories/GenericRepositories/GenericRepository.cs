@@ -1,5 +1,4 @@
 ﻿using AITech.DataAccess.Context;
-using AITech.DataAccess.Repositories;
 using AITech.Entity.Entities.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,24 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AITech.DataAccess.GenericRepositories
+namespace AITech.DataAccess.Repositories.GenericRepositories
 {
-    public class GenericRepository<TEntity>(AppDbContext _context) : IGenericRepository<TEntity> where TEntity : BaseEntity
+    public class GenericRepository<TEntity>(AppDbContext _context) : IRepository<TEntity> where TEntity : BaseEntity
     {
 
        
         public async Task CreateAsync(TEntity entity)
         {
             await _context.AddAsync(entity);
-            _context.SaveChanges();
-
+            
         }
 
-        public async Task DeleteAsync(int id)
+        public void Delete(TEntity entity)
         {
-            var entity = await GetByIdAsync(id);
             _context.Remove(entity);
-             await _context.SaveChangesAsync();
         }
 
         public async Task<IList<TEntity>> GetAllAsync()
@@ -40,10 +36,9 @@ namespace AITech.DataAccess.GenericRepositories
            
         }
 
-        public async Task UpdateAsync(TEntity entity)
+        public void Update(TEntity entity)
         {
             _context.Update(entity);
-            await _context.SaveChangesAsync();
 
         }
     }
