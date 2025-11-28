@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace AITech.DataAccess.Repositories.GenericRepositories
 {
-    public class GenericRepository<TEntity>(AppDbContext _context) : IRepository<TEntity> where TEntity : BaseEntity
+    public class GenericRepository<TEntity>(AppDbContext context) : IRepository<TEntity> where TEntity : BaseEntity
     {
+        protected readonly AppDbContext _context = context;
 
        
         public async Task CreateAsync(TEntity entity)

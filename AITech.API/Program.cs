@@ -1,6 +1,7 @@
 using AITech.Business.Extensions;
 using AITech.DataAccess.Context;
 using AITech.DataAccess.Extensions;
+using AITech.DataAccess.Interceptors;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,7 @@ builder.Services.AddBusinessServices();
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"));
+    opt.AddInterceptors(new AuditDbContextInterceptor());
 });
 builder.Services.AddControllers();
 
