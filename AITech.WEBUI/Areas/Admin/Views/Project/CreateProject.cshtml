@@ -1,0 +1,33 @@
+﻿@model CreateProjectDto
+@{
+    ViewData["Title"] = "CreateProject";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Proje Ekleme Sayfası</h1>
+
+
+<form method="post">
+
+    <label>Proje Başlığı</label>
+    <input type="text" asp-for="Title" class="form-control"  />
+    <span class="text-danger" asp-validation-for="Title"></span>
+    <br />
+
+    <label>Proje Görseli</label>
+    <input type="text" asp-for="ImageUrl" class="form-control" />
+    <span class="text-danger" asp-validation-for="ImageUrl"></span>
+
+    <br />
+
+    <label>Projenin Kategorisi</label>
+    <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.categories">
+         <option selected>Kategori Seçiniz</option>
+    
+    </select>
+ 
+    <span class="text-danger" asp-validation-for="CategoryId"></span>
+    <br />
+    <button class="btn btn-primary">Kaydet</button>
+</form>
+
