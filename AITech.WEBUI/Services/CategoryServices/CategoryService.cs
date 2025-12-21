@@ -7,7 +7,7 @@ namespace AITech.WEBUI.Services.CategoryServices
 {
     public class CategoryService : ICategoryService
     {
-        private readonly HttpClient _httpClient;//Fields
+        private readonly HttpClient _httpClient;//Field
 
         public CategoryService(HttpClient httpClient)
         {
@@ -30,15 +30,25 @@ namespace AITech.WEBUI.Services.CategoryServices
 
         public async Task<List<ResultCategoryDto>> GetAllAsync()
         {
-            var response = await _httpClient.GetAsync("categories");
+            var response = await _httpClient.GetAsync("categories");//json tipinde response nedpointe istek attık hhtp response 
             if(!response.IsSuccessStatusCode)
             {
                 throw new Exception("Kategori Listesi alınamadı!");
 
             }
+
+            //jsontipinde verileri okudu
             var jsonContent = await response.Content.ReadAsStringAsync();
+          
+            
+            //jsonformat ---> c# sınıfı dto olarak göstermek için deserialize values değişkenimizde
+            //jsonseralizer.deserialize<>
+
+            //jsonconvert.deserializeObject<>
+            
             var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonContent);
-            return values;
+           //değerleri getirdik 
+            return values; 
                 
         }
 

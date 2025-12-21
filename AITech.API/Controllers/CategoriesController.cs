@@ -19,7 +19,7 @@ namespace AITech.API.Controllers
 
         //localhost:7000/api/categories/2
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetBId(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             var category = await _categoryService.TGetByIdAsync(id);
             return Ok(category);

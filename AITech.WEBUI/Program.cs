@@ -2,7 +2,7 @@ using AITech.WEBUI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddHttpClient();
+builder.Services.AddHttpClient(); //httpclient kulanacagýmýzý ekledik
 builder.Services.AddUIService();
 builder.Services.AddControllersWithViews();
 

@@ -9,12 +9,19 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Services\FAOServices\" />
+    <Folder Include="Services\ChooseServices\" />
+    <Folder Include="Services\AboutServices\" />
+    <Folder Include="Services\AboutItemServices\" />
+    <Folder Include="Services\FeatureServices\" />
+    <Folder Include="Services\TestimonialServices\" />
+    <Folder Include="Services\SocialServices\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.22" />
   </ItemGroup>
 
 </Project>

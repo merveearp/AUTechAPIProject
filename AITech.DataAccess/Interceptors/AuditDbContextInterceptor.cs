@@ -11,10 +11,10 @@ namespace AITech.DataAccess.Interceptors
 {
     public class AuditDbContextInterceptor :SaveChangesInterceptor
     {
-        //işlemler veritabanına kayıt etmekten araya giricek saving
+        //işlemler veritabanına kayıt ediyorken araya giricek saving
         public override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData, InterceptionResult<int> result, CancellationToken cancellationToken = default)
         {
-            //chan
+            //change tracker yaptığın her işlemi takip ediyoruz 
 
            foreach(var entry in eventData.Context.ChangeTracker.Entries())
             {
