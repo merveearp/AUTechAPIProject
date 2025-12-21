@@ -1,6 +1,12 @@
-﻿using AITech.Business.Services.BannerServices;
+﻿using AITech.Business.Services.AboutItemServices;
+using AITech.Business.Services.BannerServices;
 using AITech.Business.Services.CategoryServices;
+using AITech.Business.Services.ChooseServices;
+using AITech.Business.Services.FAQServices;
 using AITech.Business.Services.ProjectServices;
+using AITech.Business.Services.SocialServices;
+using AITech.Business.Services.TestimonialServices;
+using AITech.DataAccess.Repositories.AboutItemRepositories;
 using AITech.DataAccess.Repositories.BannerRepositories;
 using AITech.DataAccess.Repositories.CategoryRepositories;
 using AITech.DataAccess.Repositories.ProjectRepositories;
@@ -23,7 +29,13 @@ namespace AITech.Business.Extensions
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<IBannerService, BannerService>();
+            services.AddScoped<IAboutItemService, AboutItemService>();
+            services.AddScoped<ISocialService, SocialService>();
+            services.AddScoped<IFAQService, FAQService>();
+            services.AddScoped<IChooseService, ChooseService>();
+            services.AddScoped<ITestimonialService, TestimonialService>();
         }
 
     }
 }
+

@@ -20,12 +20,7 @@
 
   <ItemGroup>
     <Folder Include="Repositories\AboutRepositories\" />
-    <Folder Include="Repositories\AboutItemRepositories\" />
-    <Folder Include="Repositories\ChooseRepositories\" />
-    <Folder Include="Repositories\FAQRepositories\" />
     <Folder Include="Repositories\FeatureRepositories\" />
-    <Folder Include="Repositories\TestimonialServices\" />
-    <Folder Include="Repositories\SocialRepositories\" />
   </ItemGroup>
 
 </Project>

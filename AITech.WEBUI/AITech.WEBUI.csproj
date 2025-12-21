@@ -12,7 +12,6 @@
     <Folder Include="Services\FAOServices\" />
     <Folder Include="Services\ChooseServices\" />
     <Folder Include="Services\AboutServices\" />
-    <Folder Include="Services\AboutItemServices\" />
     <Folder Include="Services\FeatureServices\" />
     <Folder Include="Services\TestimonialServices\" />
     <Folder Include="Services\SocialServices\" />
