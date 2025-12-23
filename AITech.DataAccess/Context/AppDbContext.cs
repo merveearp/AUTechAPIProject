@@ -22,10 +22,12 @@ namespace AITech.DataAccess.Context
         public DbSet<Banner> Banners { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Choose> Chooses { get; set; }
+        public DbSet<ChooseItem> ChooseItems { get; set; }
         public DbSet<FAQ> FAQs { get; set; }
         public DbSet<Feature> Features { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Social> Socials { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
+        public DbSet<TeamWorker> TeamWorkers { get; set; }
     }
 }

@@ -18,8 +18,4 @@
     <ProjectReference Include="..\AITech.Entity\AITech.Entity.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\AboutRepositories\" />
-  </ItemGroup>
-
 </Project>

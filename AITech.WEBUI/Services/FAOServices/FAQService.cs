@@ -1,4 +1,5 @@
-﻿using AITech.WEBUI.DTOs.FAQDtos;
+﻿using AITech.WEBUI.DTOs.AboutItemDtos;
+using AITech.WEBUI.DTOs.FAQDtos;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Newtonsoft.Json;
 using System.Text;
@@ -22,9 +23,9 @@ namespace AITech.WEBUI.Services.FAOServices
             await _httpClient.PostAsync("FAQs", content);
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            await _httpClient.DeleteAsync("FAQs/" + id);
         }
 
         public async Task<List<ResultFAQDto>> GetAllAsync()
@@ -37,9 +38,15 @@ namespace AITech.WEBUI.Services.FAOServices
 
         }
 
-        public Task<UpdateFAQDto> GetByIdAsync(int id)
+        public async Task<UpdateFAQDto> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.GetAsync("FAQs/" + id);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Soru Bulunamadı");
+            }
+            var jsonContent = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<UpdateFAQDto>(jsonContent);
         }
 
         public async Task UpdateAsync(UpdateFAQDto FAQDto)

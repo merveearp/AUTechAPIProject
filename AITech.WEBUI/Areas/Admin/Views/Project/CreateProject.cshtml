@@ -1,34 +1,99 @@
 ﻿@model CreateProjectDto
-@{
-    ViewData["Title"] = "CreateProject";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 
+@{
+    ViewData["Title"] = "Yeni Proje Oluştur";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Proje Ekleme Sayfası</h1>
+<div class="page-heading mb-4">
+    <h3 class="fw-bold">Yeni Proje Oluştur</h3>
+    <p class="text-muted">Yeni bir proje eklemek için aşağıdaki formu doldurun.</p>
+</div>
+
+<div class="row">
+
+    <div class="col-lg-8">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <form method="post">
 
 
-<form method="post">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Proje Başlığı</label>
+                        <input type="text"
+                               asp-for="Title"
+                               class="form-control"
+                               placeholder="Proje başlığını giriniz" />
+                        <span class="text-danger small" asp-validation-for="Title"></span>
+                    </div>
 
-    <label>Proje Başlığı</label>
-    <input type="text" asp-for="Title" class="form-control"  />
-    <span class="text-danger" asp-validation-for="Title"></span>
-    <br />
 
-    <label>Proje Görseli</label>
-    <input type="text" asp-for="ImageUrl" class="form-control" />
-    <span class="text-danger" asp-validation-for="ImageUrl"></span>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Proje Görseli (URL)</label>
+                        <input type="text"
+                               asp-for="ImageUrl"
+                               id="imageUrlInput"
+                               class="form-control"
+                               placeholder="https://..." />
+                        <span class="text-danger small" asp-validation-for="ImageUrl"></span>
+                    </div>
 
-    <br />
 
-    <label>Projenin Kategorisi</label>
-    <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.categories">
-         <option selected>Kategori Seçiniz</option>
-    
-    </select>
- 
-    <span class="text-danger" asp-validation-for="CategoryId"></span>
-    <br />
-    <button class="btn btn-primary">Kaydet</button>
-</form>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Proje Kategorisi</label>
+                        <select asp-for="CategoryId"
+                                class="form-select"
+                                asp-items="@ViewBag.categories">
+                            <option value="">Kategori Seçiniz</option>
+                        </select>
+                        <span class="text-danger small" asp-validation-for="CategoryId"></span>
+                    </div>
+
+                   
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            Kaydet
+                        </button>
+
+                        <a href="/Admin/Project"
+                           class="btn btn-outline-secondary">
+                            Vazgeç
+                        </a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body text-center">
+                <h6 class="fw-semibold mb-3">Görsel Önizleme</h6>
+
+                <img id="imagePreview"
+                     src="/img/placeholder.png"
+                     class="img-fluid rounded border"
+                     style="max-height:240px; object-fit:cover;" />
+
+                <p class="text-muted small mt-2">
+                    Görsel URL girdikçe otomatik önizleme yapılır
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script>
+        const imageInput = document.getElementById("imageUrlInput");
+        const imagePreview = document.getElementById("imagePreview");
+
+        imageInput.addEventListener("input", function () {
+            if (this.value) {
+                imagePreview.src = this.value;
+            }
+        });
+    </script>
 

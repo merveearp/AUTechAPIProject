@@ -10,5 +10,6 @@ namespace AITech.WEBUI.DTOs.ProjectDtos
         public string ImageUrl { get; set; }
         public int CategoryId { get; set; }
         public ResultCategoryDto Category { get; set; }
+
     }
 }

@@ -13,46 +13,28 @@ namespace AITech.Business.Services.ChooseServices
 {
     public class ChooseService(IChooseRepository _chooseRepository,IUnitOfWork _unitOfWork) : IChooseService 
     {
-
-        public async Task TCreateAsync(CreateChooseDto createChoose)
+        public async Task TCreateAsync(CreateChooseDto createDto)
         {
-            var value = createChoose.Adapt<Choose>();
-            await _chooseRepository.CreateAsync(value);
+            var entity = createDto.Adapt<Choose>();
+            await _chooseRepository.CreateAsync(entity);
             await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task TDeleteAsync(int id)
+        public async Task<ResultChooseDto?> TGetAsync()
         {
-            var value = await _chooseRepository.GetByIdAsync(id);
-            if(value == null)
-            {
-                throw new Exception("Seçenek Bulunamadı");
+            var choose = await _chooseRepository.GetAsync();
 
-            }
-            _chooseRepository.Delete(value);
+            if (choose == null)
+                return null;
+
+            return choose.Adapt<ResultChooseDto>();
+        }
+
+        public async Task TUpdateAsync(UpdateChooseDto updateDto)
+        {
+            var entity = updateDto.Adapt<Choose>();
+            _chooseRepository.Update(entity);
             await _unitOfWork.SaveChangesAsync();
-
-        }
-
-        public async Task<IList<ResultChooseDto>> TGetAllAsync()
-        {
-            var values = await _chooseRepository.GetAllAsync();
-            return values.Adapt<List<ResultChooseDto>>();
-        }
-
-        public async Task<ResultChooseDto> TGetByIdAsync(int id)
-        {
-            var value = await _chooseRepository.GetByIdAsync(id);
-            return value.Adapt<ResultChooseDto>();
-
-        }
-
-        public async Task TUpdateAsync(UpdateChooseDto updateChoose)
-        {
-            var value = updateChoose.Adapt<Choose>();
-             _chooseRepository.Update(value);
-            await _unitOfWork.SaveChangesAsync();
-
         }
     }
 }

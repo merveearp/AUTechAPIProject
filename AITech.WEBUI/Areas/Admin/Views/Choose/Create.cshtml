@@ -1,0 +1,100 @@
+﻿@model CreateChooseDto
+
+@{
+    ViewData["Title"] = "Why Choose Us - Oluştur";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h3 class="mb-1">Why Choose Us Oluştur</h3>
+                    <p class="text-muted mb-0">
+                        Anasayfada gösterilecek “Why Choose Us” alanını buradan oluşturabilirsiniz.
+                    </p>
+                </div>
+
+                <div>
+                    <a href="/Admin/Choose/Index" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left"></i>
+                        Geri Dön
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+
+                    <form asp-action="Create" method="post">
+
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Başlık</label>
+                            <input asp-for="Title"
+                                   class="form-control"
+                                   placeholder="Why Choose Us başlığı" />
+                            <span asp-validation-for="Title" class="text-danger small"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Açıklama</label>
+                            <textarea asp-for="Description"
+                                      rows="5"
+                                      class="form-control"
+                                      placeholder="Kısa açıklama metni"></textarea>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Görsel URL</label>
+                            <input asp-for="ImageUrl"
+                                   class="form-control"
+                                   placeholder="/images/why-choose-us.png"
+                                   id="imageUrlInput" />
+                            <span asp-validation-for="ImageUrl" class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save"></i>
+                                Oluştur
+                            </button>
+
+                            <a href="/Admin/Choose/Index"
+                               class="btn btn-outline-secondary">
+                                Vazgeç
+                            </a>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h6 class="fw-semibold mb-3">Görsel Önizleme</h6>
+
+                    <img id="imagePreview"
+                         src="/img/placeholder.png"
+                         class="img-fluid rounded border"
+                         style="max-height:220px; object-fit:cover;" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

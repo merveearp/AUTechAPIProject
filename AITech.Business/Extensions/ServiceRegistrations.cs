@@ -1,22 +1,17 @@
 ﻿using AITech.Business.Services.AboutItemServices;
+using AITech.Business.Services.AboutServices;
 using AITech.Business.Services.BannerServices;
 using AITech.Business.Services.CategoryServices;
+using AITech.Business.Services.ChooseItemServices;
 using AITech.Business.Services.ChooseServices;
 using AITech.Business.Services.FAQServices;
+using AITech.Business.Services.FeatureServices;
 using AITech.Business.Services.ProjectServices;
 using AITech.Business.Services.SocialServices;
+using AITech.Business.Services.TeamWorkerServices;
 using AITech.Business.Services.TestimonialServices;
-using AITech.DataAccess.Repositories.AboutItemRepositories;
-using AITech.DataAccess.Repositories.BannerRepositories;
-using AITech.DataAccess.Repositories.CategoryRepositories;
-using AITech.DataAccess.Repositories.ProjectRepositories;
-using AITech.DataAccess.UnitOfWorks;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace AITech.Business.Extensions
 {
@@ -33,7 +28,11 @@ namespace AITech.Business.Extensions
             services.AddScoped<ISocialService, SocialService>();
             services.AddScoped<IFAQService, FAQService>();
             services.AddScoped<IChooseService, ChooseService>();
+            services.AddScoped<IChooseItemService, ChooseItemService>();
             services.AddScoped<ITestimonialService, TestimonialService>();
+            services.AddScoped<IFeatureService, FeatureService>();
+            services.AddScoped<ITeamWorkerService, TeamWorkerService>();
+            services.AddScoped<IAboutService, AboutService>();
         }
 
     }

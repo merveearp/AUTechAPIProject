@@ -1,0 +1,105 @@
+﻿@model ResultChooseDto
+@{
+    ViewData["Title"] = "Why Choose Us Yönetimi";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h3 class="mb-1">Neden Bizi Tercih Etmelisiniz? (Choose)</h3>
+                    <p class="text-muted mb-0">
+                        Web sitesinde yer alan “Why Choose Us / Feature” alanını buradan görüntüleyebilirsiniz.
+                    </p>
+                </div>
+                @if(Model == null)
+                {
+                    <div>
+                        <a href="/Admin/Choose/Create"
+                           class="btn btn-outline-primary">
+                            <i class="bi bi-pencil-square"></i>
+                            Eklemek için tıklayın
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <a href="/Admin/Choose/Update"
+                           class="btn btn-outline-primary">
+                            <i class="bi bi-pencil-square"></i>
+                            Düzenlemek için tıklayın
+                        </a>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="row">
+
+      
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+
+                  
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Başlık</label>
+                        <input type="text"
+                               class="form-control"
+                               value="@Model?.Title"
+                               disabled />
+                    </div>
+
+                   
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Açıklama</label>
+                        <textarea class="form-control"
+                                  rows="5"
+                                  disabled>@Model?.Description</textarea>
+                    </div>
+
+                    
+                    <div>
+                        @if (Model == null)
+                        {
+                            <span class="badge bg-warning">
+                                Henüz içerik oluşturulmadı
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">
+                                Aktif
+                            </span>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h6 class="fw-semibold mb-3">Görsel Önizleme</h6>
+
+                    <img src="@(string.IsNullOrWhiteSpace(Model?.ImageUrl)
+                                                         ? "/img/placeholder.png"
+                                                         : Model.ImageUrl)"
+                         class="img-fluid rounded border"
+                         style="max-height:220px; object-fit:cover;" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

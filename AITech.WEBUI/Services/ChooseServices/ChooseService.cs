@@ -1,40 +1,50 @@
 ﻿using AITech.WEBUI.DTOs.ChooseDtos;
+using AITech.WEBUI.Services.ChooseServices;
+using Newtonsoft.Json;
+using System.Text;
 
-namespace AITech.WEBUI.Services.ChooseServices
+public class ChooseService : IChooseService
 {
-    public class ChooseService: IChooseService
+    private readonly HttpClient _httpClient;
+
+    public ChooseService(HttpClient httpClient)
     {
-        private readonly HttpClient _httpClient;
+        httpClient.BaseAddress = new Uri("https://localhost:7051/api/");
+        _httpClient = httpClient;
+    }
 
-        public ChooseService(HttpClient httpClient)
-        {
-            httpClient.BaseAddress = new Uri("https://localhost:7051/api/");
-            _httpClient = httpClient;
-        }
+    public async Task CreateAsync(CreateChooseDto chooseDto)
+    {
+        var jsonContent = JsonConvert.SerializeObject(chooseDto);
+        var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+        await _httpClient.PostAsync("Chooses", content);
+    }
 
-        public Task CreateAsync(CreateChooseDto chooseDto)
-        {
-            throw new NotImplementedException();
-        }
+    public async Task<ResultChooseDto?> GetAsync()
+    {
+        var response = await _httpClient.GetAsync("chooses");
 
-        public Task DeleteAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            return null;
 
-        public Task<List<ResultChooseDto>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
+        response.EnsureSuccessStatusCode();
 
-        public Task<UpdateChooseDto> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        var jsonContent = await response.Content.ReadAsStringAsync();
+        return JsonConvert.DeserializeObject<ResultChooseDto>(jsonContent);
+    }
 
-        public Task UpdateAsync(UpdateChooseDto chooseDto)
-        {
-            throw new NotImplementedException();
-        }
+    public async Task UpdateAsync(UpdateChooseDto chooseDto)
+    {
+        var jsonContent = JsonConvert.SerializeObject(chooseDto);
+
+        var content = new StringContent(
+            jsonContent,
+            Encoding.UTF8,
+            "application/json"
+        );
+
+        var response = await _httpClient.PutAsync("chooses", content);
+
+        response.EnsureSuccessStatusCode();
     }
 }

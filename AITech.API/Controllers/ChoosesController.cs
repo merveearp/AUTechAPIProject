@@ -1,6 +1,5 @@
 ﻿using AITech.Business.Services.ChooseServices;
 using AITech.DTO.ChooseDtos;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AITech.API.Controllers
@@ -12,36 +11,26 @@ namespace AITech.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var entities = await _chooseService.TGetAllAsync();
-            return Ok(entities);
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
-        {
-            var entity = await _chooseService.TGetByIdAsync(id);
+            var entity = await _chooseService.TGetAsync();
             return Ok(entity);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateChooseDto createChoose)
+        public async Task<IActionResult> Create(CreateChooseDto createDto)
         {
-             await _chooseService.TCreateAsync(createChoose);
-            return Ok("Seçenek Oluşturuldu");
+            await _chooseService.TCreateAsync(createDto);
+            return Ok("Yeni oluşturuldu");
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(UpdateChooseDto updateChoose)
+        public async Task<IActionResult> Update(UpdateChooseDto updateDto)
         {
-            await _chooseService.TUpdateAsync(updateChoose);
-            return Ok("Seçenek Güncellendi");
+            await _chooseService.TUpdateAsync(updateDto);
+            return Ok("Entity Güncellendi");
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            await _chooseService.TDeleteAsync(id);
-            return Ok("Seçenek Silindi");
-        }
+
+
+
     }
 }

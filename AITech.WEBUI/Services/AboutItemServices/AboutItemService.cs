@@ -22,9 +22,9 @@ namespace AITech.WEBUI.Services.AboutItemServices
             await _httpClient.PostAsync("aboutItems", content);
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            await _httpClient.DeleteAsync("aboutItems/" + id);
         }
 
         public async Task<List<ResultAboutItemDto>> GetAllAsync()

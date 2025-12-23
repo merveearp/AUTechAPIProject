@@ -1,4 +1,7 @@
 ﻿using AITech.WEBUI.DTOs.ProjectDtos;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Text;
 
 namespace AITech.WEBUI.Services.ProjectService
 {
@@ -34,7 +37,11 @@ namespace AITech.WEBUI.Services.ProjectService
 
         public async Task UpdateAsync(UpdateProjectDto projectDto)
         {
-            await _client.PutAsJsonAsync("projects" , projectDto);
+            await _client.PutAsJsonAsync(
+                $"projects/{projectDto.Id}",
+                projectDto
+            );
         }
+
     }
 }

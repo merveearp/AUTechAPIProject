@@ -1,0 +1,104 @@
+﻿@model UpdateAboutDto
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <h3 class="mb-1">Hakkımda Alanını Düzenleme Alanı(About)</h3>
+            <p class="text-muted">
+                Web sitesinde yer alan “About” alanını buradan yönetin.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+
+
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+
+                    <form asp-action="Update" method="post">
+
+                        <input type="hidden" asp-for="Id" />
+
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Başlık</label>
+                            <input asp-for="Title"
+                                   class="form-control"
+                                   placeholder="Başlık giriniz" />
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Açıklama</label>
+                            <textarea asp-for="Description"
+                                      class="form-control"
+                                      rows="5"
+                                      placeholder="Açıklama giriniz"></textarea>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Görsel URL</label>
+                            <input asp-for="ImageUrl"
+                                   class="form-control"
+                                   placeholder="/images/why-choose-us.png"
+                                   id="imageUrlInput" />
+                        </div>
+
+                        <div class="d-flex align-items-center gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                Kaydet
+                            </button>
+
+                            <a asp-area="Admin"
+                               asp-controller="About"
+                               asp-action="Index"
+                               class="btn btn-outline-info">
+                                ← Geri Dön
+                            </a>
+
+                           
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h6 class="fw-semibold mb-3">Görsel Önizleme</h6>
+
+                    <img id="imagePreview"
+                         src="@(string.IsNullOrWhiteSpace(Model?.ImageUrl)
+                                                      ? "/img/placeholder.png"
+                                                      : Model.ImageUrl)"
+                         class="img-fluid rounded border"
+                         style="max-height:220px; object-fit:cover;" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    const imageInput = document.getElementById("imageUrlInput");
+    const imagePreview = document.getElementById("imagePreview");
+
+    imageInput.addEventListener("input", function () {
+        if (this.value) {
+            imagePreview.src = this.value;
+        }
+    });
+</script>

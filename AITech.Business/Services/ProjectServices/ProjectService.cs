@@ -54,9 +54,18 @@ namespace AITech.Business.Services.ProjectServices
 
         public async Task TUpdateAsync(UpdateProjectDto updateDto)
         {
-            var project = updateDto.Adapt<Project>();
-            _projectRepository.Update(project);
+            var project = await _projectRepository.GetByIdAsync(updateDto.Id);
+
+            if (project == null)
+                throw new Exception("Güncellenecek proje bulunamadı.");
+
+           
+            updateDto.Adapt(project);
+
+            project.UpdatedDate = DateTime.Now;
+
             await _unitOfWork.SaveChangesAsync();
         }
+
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace AITech.WEBUI.DTOs.FAQDtos
 
+
 {
     public record UpdateFAQDto(int Id, string? Question, string? Answer);
 

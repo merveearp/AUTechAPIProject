@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 
 namespace AITech.DataAccess.Repositories.ChooseRepositories
 {
-    public interface IChooseRepository :IRepository<Choose>
+    public interface IChooseRepository 
     {
+        Task<Choose?> GetAsync();
+        Task CreateAsync(Choose choose);
+        void Update(Choose choose);
+
     }
 }

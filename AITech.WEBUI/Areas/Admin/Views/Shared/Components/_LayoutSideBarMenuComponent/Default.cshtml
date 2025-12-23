@@ -32,15 +32,19 @@ _HomeSideBarMenuComponent
             </a>
         </li>
 
-
         <li class="sidebar-item active">
-            <a asp-controller="Feature" asp-action="Index" class='sidebar-link'>
-                <i class="bi bi-basket-fill"></i>
-                <span>Öne Çıkan Alan</span>
+            <a asp-controller="Banner" asp-action="Index" class='sidebar-link'>
+                <i class="bi bi-pen-fill"></i>
+                <span>Tanıtım Alanı </span>
             </a>
         </li>
 
-
+        <li class="sidebar-item active">
+            <a asp-controller="Choose" asp-action="Index" class='sidebar-link'>
+                <i class="bi bi-pen-fill"></i>
+                <span>Choose Alanı </span>
+            </a>
+        </li>
 
         <li class="sidebar-title">Listeler</li>
 
@@ -59,23 +63,22 @@ _HomeSideBarMenuComponent
         </li>
 
         <li class="sidebar-item ">
-            <a asp-controller="Product" asp-action="Index" class='sidebar-link'>
+            <a asp-controller="Project" asp-action="Index" class='sidebar-link'>
                 <i class="bi bi-grid-1x2-fill"></i>
                 <span>Ürünler</span>
             </a>
         </li>
-        
-        <li class="sidebar-item  has-sub">
-            <a asp-controller="Banner" asp-action="Index" class='sidebar-link'>
-                <i class="bi bi-pen-fill"></i>
-                <span>Banner </span>
-            </a >                         
-        </li>
 
+        <li class="sidebar-item ">
+            <a asp-controller="Feature" asp-action="Index" class='sidebar-link'>
+                <i class="bi bi-basket-fill"></i>
+                <span>Hizmetlerimiz </span>
+            </a>
+        </li>
         <li class="sidebar-item  ">
-            <a asp-controller="Choose" asp-action="Index" class='sidebar-link'>
+            <a asp-controller="ChooseItem" asp-action="Index" class='sidebar-link'>
                 <i class="bi bi-pen-fill"></i>
-                <span>Seçenekler </span>
+                <span>Choose Itemleri </span>
             </a>
         </li>
        

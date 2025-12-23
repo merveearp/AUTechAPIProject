@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 
 namespace AITech.Business.Services.ChooseServices
 {
-    public interface IChooseService :IGenericService<ResultChooseDto,CreateChooseDto,UpdateChooseDto>
+    public interface IChooseService 
     {
+        Task<ResultChooseDto?> TGetAsync();
+        Task TUpdateAsync(UpdateChooseDto chooseDto);
+        Task TCreateAsync(CreateChooseDto chooseDto);
     }
 }

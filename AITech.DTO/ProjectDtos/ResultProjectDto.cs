@@ -15,5 +15,4 @@ namespace AITech.DTO.ProjectDtos
         int CategoryId,
         ResultCategoryDto Category
         );
-  
 }

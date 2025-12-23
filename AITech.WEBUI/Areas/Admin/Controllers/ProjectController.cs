@@ -49,6 +49,7 @@ namespace AITech.WEBUI.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateProject(int id)
         {
+            await GetCategoriesAsync();
             var value = await _projectService.GetByIdAsync(id);
             return View(value);
         }
@@ -56,13 +57,13 @@ namespace AITech.WEBUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateProject(UpdateProjectDto updateProjectDto)
         {
+
             await GetCategoriesAsync();
             await _projectService.UpdateAsync(updateProjectDto);
             return RedirectToAction("Index");
-
         }
 
-        public async Task<IActionResult>DeleteAsync(int id)
+        public async Task<IActionResult> DeleteProject(int id)
         {
             await _projectService.DeleteAsync(id);
             return RedirectToAction("Index");

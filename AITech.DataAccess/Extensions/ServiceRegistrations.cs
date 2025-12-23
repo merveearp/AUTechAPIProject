@@ -1,11 +1,15 @@
 ﻿using AITech.DataAccess.Repositories.AboutItemRepositories;
+using AITech.DataAccess.Repositories.AboutRepositories;
 using AITech.DataAccess.Repositories.BannerRepositories;
 using AITech.DataAccess.Repositories.CategoryRepositories;
+using AITech.DataAccess.Repositories.ChooseItemRepositories;
 using AITech.DataAccess.Repositories.ChooseRepositories;
 using AITech.DataAccess.Repositories.FAQRepositories;
+using AITech.DataAccess.Repositories.FeatureRepositories;
 using AITech.DataAccess.Repositories.GenericRepositories;
 using AITech.DataAccess.Repositories.ProjectRepositories;
 using AITech.DataAccess.Repositories.SocialRepositories;
+using AITech.DataAccess.Repositories.TeamWorkerRepositories;
 using AITech.DataAccess.Repositories.TestimonialRepositories;
 using AITech.DataAccess.UnitOfWorks;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,7 +34,11 @@ namespace AITech.DataAccess.Extensions
             services.AddScoped<IFAQRepository  ,FAQRepository>();
             services.AddScoped<ISocialRepository  ,SocialRepository>();
             services.AddScoped<ITestimonialRepository  ,TestimonialRepository>();
+            services.AddScoped<IChooseItemRepository  ,ChooseItemRepository>();
             services.AddScoped<IChooseRepository  ,ChooseRepository>();
+            services.AddScoped<IFeatureRepository  ,FeatureRepository>();
+            services.AddScoped<ITeamWorkerRepository  ,TeamWorkerRepository>();
+            services.AddScoped<IAboutRepository  ,AboutRepository>();
            
         }
     }

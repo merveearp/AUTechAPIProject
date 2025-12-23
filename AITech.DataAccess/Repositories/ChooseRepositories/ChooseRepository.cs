@@ -1,18 +1,32 @@
 ﻿using AITech.DataAccess.Context;
-using AITech.DataAccess.Repositories.GenericRepositories;
 using AITech.Entity.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace AITech.DataAccess.Repositories.ChooseRepositories
 {
-    public class ChooseRepository : GenericRepository<Choose>, IChooseRepository
+    public class ChooseRepository : IChooseRepository
     {
-        public ChooseRepository(AppDbContext context) : base(context)
+        private readonly AppDbContext _context;
+
+        public ChooseRepository(AppDbContext context)
         {
+            _context = context;
+        }
+
+        public async  Task CreateAsync(Choose choose)
+        {
+            await _context.Chooses.AddAsync(choose);
+        }
+
+        public async Task<Choose?> GetAsync()
+        {
+            return await _context.Chooses.FirstOrDefaultAsync();
+        }
+
+        public void Update(Choose choose)
+        {
+             _context.Chooses.Update(choose);
         }
     }
 }
