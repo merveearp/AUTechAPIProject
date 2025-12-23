@@ -6,7 +6,7 @@ using AITech.DataAccess.Repositories.FAQRepositories;
 using AITech.DataAccess.Repositories.GenericRepositories;
 using AITech.DataAccess.Repositories.ProjectRepositories;
 using AITech.DataAccess.Repositories.SocialRepositories;
-using AITech.DataAccess.Repositories.TestimonialServices;
+using AITech.DataAccess.Repositories.TestimonialRepositories;
 using AITech.DataAccess.UnitOfWorks;
 using Microsoft.Extensions.DependencyInjection;
 using System;

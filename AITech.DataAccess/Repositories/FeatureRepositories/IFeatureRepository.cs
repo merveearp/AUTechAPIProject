@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AITech.DataAccess.Repositories.TestimonialServices
+namespace AITech.DataAccess.Repositories.FeatureRepositories
 {
-    public interface ITestimonialRepository :IRepository<Testimonial>
+    public interface IFeatureRepository :IRepository<Feature>
     {
     }
 }

@@ -1,4 +1,4 @@
-﻿using AITech.DataAccess.Repositories.TestimonialServices;
+﻿using AITech.DataAccess.Repositories.TestimonialRepositories;
 using AITech.DataAccess.UnitOfWorks;
 using AITech.DTO.TestimonialDtos;
 using AITech.Entity.Entities;

@@ -9,6 +9,7 @@ namespace AITech.DTO.ProjectDtos
     public record CreateProjectDto 
     (                         
     string Title,
+    string Description,
     string ImageUrl,
     int CategoryId
     );

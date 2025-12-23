@@ -9,9 +9,9 @@ namespace AITech.Entity.Entities
 {
     public class About :BaseEntity
     {
-        public int Title { get; set; }
-        public int Description { get; set; }
-        public int ImageUrl { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string ImageUrl { get; set; }
 
     }
 }

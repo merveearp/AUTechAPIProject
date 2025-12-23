@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AITech.DataAccess.Repositories.TestimonialServices
+namespace AITech.DataAccess.Repositories.TestimonialRepositories
 {
     public class TestimonialRepository : GenericRepository<Testimonial>, ITestimonialRepository
     {

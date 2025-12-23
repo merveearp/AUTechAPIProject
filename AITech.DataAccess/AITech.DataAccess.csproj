@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <Folder Include="Repositories\AboutRepositories\" />
-    <Folder Include="Repositories\FeatureRepositories\" />
   </ItemGroup>
 
 </Project>

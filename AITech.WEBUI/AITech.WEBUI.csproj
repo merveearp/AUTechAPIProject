@@ -9,8 +9,6 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Services\FAOServices\" />
-    <Folder Include="Services\ChooseServices\" />
     <Folder Include="Services\AboutServices\" />
     <Folder Include="Services\FeatureServices\" />
     <Folder Include="Services\TestimonialServices\" />

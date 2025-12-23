@@ -10,6 +10,7 @@ namespace AITech.DTO.ProjectDtos
     public record ResultProjectDto(
         int Id,
         string Title,
+        string Description,
         string ImageUrl,
         int CategoryId,
         ResultCategoryDto Category

@@ -27,7 +27,7 @@ namespace AITech.Business.Services.FAQServices
             var value = await _fAQRepository.GetByIdAsync(id);
             if(value is null)
             {
-                throw new Exception("Seçenek bulunamadı");
+                throw new Exception("Soru kalıbı bulunamadı");
 
             }
             _fAQRepository.Delete(value);
