@@ -9,9 +9,10 @@ using System.Threading.Tasks;
 
 namespace AITech.Business.Services.BannerServices
 {
-    public interface IBannerService :IGenericService<ResultBannerDto,CreateBannerDto,UpdateBannerDto>
+    public interface IBannerService 
     {
-        Task TMakeActiveAsync(int id);
-        Task TMakePassiveAsync(int id);
+        Task<ResultBannerDto?> TGetAsync();
+        Task TUpdateAsync(UpdateBannerDto updateDto);
+        Task TCreateAsync(CreateBannerDto createDto);
     }
 }

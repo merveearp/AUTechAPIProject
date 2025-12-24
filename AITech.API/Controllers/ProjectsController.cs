@@ -56,6 +56,20 @@ namespace AITech.API.Controllers
             return NoContent();
 
         }
+        [HttpPatch("makeActive/{id}")]
+        public async Task<IActionResult> MakeActive(int id)
+        {
+            await _projectService.TMakeActiveAsync(id);
+            return NoContent();
+        }
 
-       }
+
+        [HttpPatch("makePassive/{id}")]
+        public async Task<IActionResult> MakePassive(int id)
+        {
+            await _projectService.TMakePassiveAsync(id);
+            return NoContent();
+        }
+
+    }
     }

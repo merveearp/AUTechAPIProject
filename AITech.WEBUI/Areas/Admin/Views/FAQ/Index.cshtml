@@ -1,0 +1,83 @@
+﻿@model List<ResultFAQDto>
+
+@{
+    ViewData["Title"] = "FAQ Yönetimi";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row mb-4">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <div>
+                <h3 class="mb-1">Sıkça Sorulan Sorular (FAQ)</h3>
+                <p class="text-muted mb-0">
+                    Web sitesinde gösterilecek soru ve cevapları buradan yönetin.
+                </p>
+            </div>
+
+            <a asp-action="Create"
+               class="btn btn-primary">
+                <i class="bi bi-plus-circle me-1"></i>
+                Yeni FAQ Ekle
+            </a>
+        </div>
+    </div>
+
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            @if (Model != null && Model.Any())
+            {
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-6 col-xl-4 mb-4">
+                            <div class="card shadow-sm h-100 border-0">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="fw-bold text-primary">
+                                            <i class="bi bi-question-circle me-1"></i>
+                                            @item.Question
+                                        </h6>
+                                    </div>
+
+                                    <p class="text-muted small">
+                                        @(item.Answer.Length > 120
+                                                                        ? item.Answer.Substring(0, 120) + "..."
+                                                                        : item.Answer)
+                                    </p>
+                                </div>
+
+                                <div class="card-footer bg-white border-0 d-flex justify-content-end gap-2">
+                                    <a asp-action="UpdateFAQ"
+                                       asp-route-id="@item.Id"
+                                       class="btn btn-sm btn-info">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+
+                                    <a asp-action="DeleteFAQ"
+                                       asp-route-id="@item.Id"
+                                       class="btn btn-sm btn-danger"
+                                       onclick="return confirm('Silmek istediğinize emin misiniz?')">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            }
+            else
+            {
+                <div class="alert alert-info mb-0">
+                    Henüz FAQ kaydı bulunmamaktadır.
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>

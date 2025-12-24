@@ -17,7 +17,9 @@ namespace AITech.WEBUI.Services.ProjectService
 
         public async Task CreateAsync(CreateProjectDto projectDto)
         {
-            await _client.PostAsJsonAsync("projects", projectDto);
+            var jsonContent = JsonConvert.SerializeObject(projectDto);
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+            await _client.PostAsync("projects", content);
         }
 
         public async Task DeleteAsync(int id)
@@ -35,12 +37,21 @@ namespace AITech.WEBUI.Services.ProjectService
             return await _client.GetFromJsonAsync<UpdateProjectDto>("projects/" + id);
         }
 
+        public async Task MakeActiveAsync(int id)
+        {
+            await _client.PatchAsync("projects/makeActive/" + id, null);
+        }
+
+        public async  Task MakePassiveAsync(int id)
+        {
+            await _client.PatchAsync("projects/makePassive/" + id, null);
+        }
+
         public async Task UpdateAsync(UpdateProjectDto projectDto)
         {
-            await _client.PutAsJsonAsync(
-                $"projects/{projectDto.Id}",
-                projectDto
-            );
+            var jsonContent = JsonConvert.SerializeObject(projectDto);
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+            await _client.PutAsync("projects", content);
         }
 
     }

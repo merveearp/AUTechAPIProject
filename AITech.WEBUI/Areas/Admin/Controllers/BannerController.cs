@@ -1,4 +1,6 @@
-﻿using AITech.WEBUI.DTOs.BannerDtos;
+﻿using AITech.WEBUI.DTOs.AboutDtos;
+using AITech.WEBUI.DTOs.BannerDtos;
+using AITech.WEBUI.DTOs.ChooseDtos;
 using AITech.WEBUI.Services.BannerServices;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,53 +10,56 @@ namespace AITech.WEBUI.Areas.Admin.Controllers
     public class BannerController(IBannerService _bannerService) : Controller
     {
 
+
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var banners = await _bannerService.GetAllAsync();
-            return View(banners);
+            var entities = await _bannerService.GetAsync();
+            return View(entities);
         }
 
-        public IActionResult CreateBanner()
+        [HttpGet]
+        public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBanner(CreateBannerDto createBannerDto)
+        public async Task<IActionResult> Create(CreateBannerDto createDto)
         {
-            await _bannerService.CreateAsync(createBannerDto);
+            await _bannerService.CreateAsync(createDto);
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> UpdateBanner(int id)
+        [HttpGet]
+        public async Task<IActionResult> Update()
         {
-            var banner = await _bannerService.GetByIdAsync(id);
-            return View();
+            var value = await _bannerService.GetAsync();
+
+            if (value == null)
+                return View(new UpdateAboutDto());
+
+            return View(new UpdateBannerDto
+            {
+                Id = value.Id,
+                Title = value.Title,
+                Description = value.Description,
+                ImageUrl = value.ImageUrl
+                
+            });
         }
+
 
         [HttpPost]
-        public async Task<IActionResult> UpdateBanner(UpdateBannerDto updateBannerDto)
+        public async Task<IActionResult> Update(UpdateBannerDto updateDto)
         {
-            await _bannerService.UpdateAsync(updateBannerDto);
-            return RedirectToAction("Index");
+            if (!ModelState.IsValid)
+                return View(updateDto);
+
+            await _bannerService.UpdateAsync(updateDto);
+            return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> DeleteBanner(int id)
-        {
-            await _bannerService.DeleteAsync(id);
-            return RedirectToAction("Index");
-        }
-
-        public async Task<IActionResult> MakeActive(int id)
-        {
-            await _bannerService.MakeActiveAsync(id);
-            return RedirectToAction("Index");
-        }
-        public async Task<IActionResult> MakePassive(int id)
-        {
-            await _bannerService.MakePassiveAsync(id);
-            return RedirectToAction("Index");
-        }
 
     }
 }

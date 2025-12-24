@@ -8,9 +8,12 @@ using System.Threading.Tasks;
 
 namespace AITech.DataAccess.Repositories.BannerRepositories
 {
-    public interface IBannerRepository :IRepository<Banner>
+    public interface IBannerRepository 
     {
-        Task MakeActiveAsync(Banner banner);
-        Task MakePassiveAsync(Banner banner);
+        Task<Banner?> GetAsync();
+        Task CreateAsync(Banner banner);
+        void Update(Banner banner);
+
+
     }
 }

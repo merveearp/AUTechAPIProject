@@ -1,0 +1,93 @@
+﻿@model List<ResultTestimonialDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <div>
+                <h3 class="fw-bold mb-1">Testimonial Yönetimi</h3>
+                <p class="text-muted mb-0">
+                    Müşteri ve kullanıcı geri bildirimlerini buradan yönetin.
+                </p>
+            </div>
+            <a asp-action="CreateTestimonial" class="btn btn-primary">
+                <i class="bi bi-plus-circle me-1"></i> Yeni Ekle
+            </a>
+        </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="row">
+
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+              
+                <div class="col-lg-6 col-md-12 mb-4">
+
+                    <div class="card shadow-sm h-100">
+
+                        <div class="card-body">
+
+                            
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="@(string.IsNullOrEmpty(item.ImageUrl)
+                                             ? "/img/default-user.png"
+                                             : item.ImageUrl)"
+                                     alt="@item.Name"
+                                     class="rounded-circle me-3"
+                                     style="width:60px;height:60px;object-fit:cover;border:2px solid #e5e5e5;"
+                                     onerror="this.src='/img/default-user.png'" />
+
+                                <div>
+                                    <h6 class="fw-bold mb-0">@item.Name</h6>
+                                    <small class="text-muted">@item.Title</small>
+                                </div>
+                            </div>
+
+                          
+                            <p class="text-muted small mb-4">
+                                “@item.Comment”
+                            </p>
+
+                           
+                            <div class="d-flex justify-content-end gap-2">
+                                <a asp-action="UpdateTestimonial"
+                                   asp-route-id="@item.Id"
+                                   class="btn btn-sm btn-outline-warning">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a asp-action="DeleteTestimonial"
+                                   asp-route-id="@item.Id"
+                                   class="btn btn-sm btn-outline-danger"
+                                   onclick="return confirm('Silmek istediğinize emin misiniz?');">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <div class="alert alert-light text-center text-muted">
+                    Henüz testimonial eklenmemiştir.
+                </div>
+            </div>
+        }
+
+    </div>
+
+</div>

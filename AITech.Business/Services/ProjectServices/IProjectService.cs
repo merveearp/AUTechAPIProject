@@ -12,5 +12,7 @@ namespace AITech.Business.Services.ProjectServices
     public interface IProjectService :IGenericService<ResultProjectDto,CreateProjectDto,UpdateProjectDto>
     {
         Task<List<ResultProjectDto>> TGetProjectWithCategoriesAsync();
+        Task TMakeActiveAsync(int id);
+        Task TMakePassiveAsync(int id);
     }
 }

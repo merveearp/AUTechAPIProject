@@ -20,5 +20,15 @@ namespace AITech.DataAccess.Repositories.ProjectRepositories
         {
             return await _context.Projects.AsNoTracking().Include(x =>x.Category).ToListAsync();
         }
+
+        public async Task MakeActiveAsync(Project project)
+        {
+            project.IsActive=true;
+        }
+
+        public async Task MakePassiveAsync(Project project)
+        {
+            project.IsActive = false;
+        }
     }
 }

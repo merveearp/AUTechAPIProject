@@ -9,5 +9,7 @@ namespace AITech.WEBUI.Services.ProjectService
         Task CreateAsync(CreateProjectDto ProjectDto);
         Task UpdateAsync(UpdateProjectDto ProjectDto);
         Task DeleteAsync(int id);
+        Task MakeActiveAsync(int id);
+        Task MakePassiveAsync(int id);
     }
 }

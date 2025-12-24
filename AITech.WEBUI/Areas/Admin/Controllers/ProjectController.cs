@@ -68,5 +68,17 @@ namespace AITech.WEBUI.Areas.Admin.Controllers
             await _projectService.DeleteAsync(id);
             return RedirectToAction("Index");
         }
+        
+        public async Task<IActionResult> MakeActive(int id)
+        {
+            await _projectService.MakeActiveAsync(id);
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> MakePassive(int id)
+        {
+            await _projectService.MakePassiveAsync(id);
+            return RedirectToAction("Index");
+        }
+
     }
 }

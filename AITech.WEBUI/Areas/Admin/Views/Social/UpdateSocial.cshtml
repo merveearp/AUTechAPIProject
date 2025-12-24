@@ -1,0 +1,86 @@
+﻿@model UpdateSocialDto
+
+@{
+    ViewData["Title"] = "Sosyal Medya Güncelle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <h3 class="fw-bold mb-1">Sosyal Medya Güncelle</h3>
+            <p class="text-muted">
+                Seçilen sosyal medya bilgisini buradan düzenleyebilirsiniz.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+
+            <div class="card shadow-sm">
+                <div class="card-body">
+
+                    <form asp-action="UpdateSocial" method="post">
+
+
+                        <input type="hidden" asp-for="Id" />
+
+                        
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Platform Adı</label>
+                            <input asp-for="Name"
+                                   class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+
+                       
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Icon Class</label>
+                            <input asp-for="Icon"
+                                   class="form-control" />
+                            <small class="text-muted">
+                                Örn: bi bi-linkedin
+                            </small>
+                            <span asp-validation-for="Icon" class="text-danger small"></span>
+                        </div>
+
+                       
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">URL</label>
+                            <input asp-for="Url"
+                                   class="form-control" />
+                            <span asp-validation-for="Url" class="text-danger small"></span>
+                        </div>
+
+                        
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> Geri Dön
+                            </a>
+                            <button type="submit" class="btn btn-warning">
+                                <i class="bi bi-pencil-square"></i> Güncelle
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h6 class="fw-semibold mb-2">Bilgilendirme</h6>
+                    <p class="text-muted small mb-0">
+                        Buraya eklenen başlıklar, web sitesindeki
+                        <strong>Sosyal Medya</strong> alanında madde olarak güncellenecektir.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

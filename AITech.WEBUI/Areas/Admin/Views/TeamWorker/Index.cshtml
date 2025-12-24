@@ -1,0 +1,84 @@
+﻿@model List<ResultTeamWorkerDto>
+
+@{
+    ViewData["Title"] = "Ekip Üyeleri";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+
+    <div class="row mb-4">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <div>
+                <h3 class="fw-bold mb-1">Ekip Yönetimi</h3>
+                <p class="text-muted mb-0">
+                    Şirket bünyesinde yer alan ekip üyelerini buradan yönetin.
+                </p>
+            </div>
+            <a asp-action="CreateTeam" class="btn btn-primary">
+                <i class="bi bi-plus-circle me-1"></i> Yeni Üye Ekle
+            </a>
+        </div>
+    </div>
+
+
+    <div class="row">
+
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+
+                    <div class="card shadow-sm h-100 text-center">
+
+                        <div class="card-body">
+
+
+                            <img src="@(string.IsNullOrEmpty(item.ImageUrl)
+                                                                         ? "/img/default-user.png"
+                                                                         : item.ImageUrl)"
+                                 alt="@item.FullName"
+                                 class="rounded-circle mb-3"
+                                 style="width:120px;height:120px;object-fit:cover;border:3px solid #e5e5e5;" />
+
+                            <h5 class="fw-bold mb-1">@item.FullName</h5>
+
+
+                            <p class="text-muted mb-3">@item.Title</p>
+
+
+                            <div class="d-flex justify-content-center gap-2">
+                                <a asp-action="UpdateTeam"
+                                   asp-route-id="@item.Id"
+                                   class="btn btn-sm btn-warning">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a asp-action="DeleteTeam"
+                                   asp-route-id="@item.Id"
+                                   class="btn btn-sm btn-danger"
+                                   onclick="return confirm('Silmek istediğinize emin misiniz?');">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <div class="alert alert-light text-center text-muted">
+                    Henüz ekip üyesi eklenmemiştir.
+                </div>
+            </div>
+        }
+
+    </div>
+
+</div>

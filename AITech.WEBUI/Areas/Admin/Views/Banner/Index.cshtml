@@ -1,9 +1,114 @@
-﻿@model List<ResultBannerDto>
+﻿@model ResultBannerDto
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 
 }
 
-<h1>Index</h1>
+<div class="container-fluid">
 
+
+    <div class="row mb-4">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <div>
+                <h3 class="mb-1">Tanıtım Alanı (Hero)</h3>
+                <p class="text-muted mb-0">
+                    Web sitesinde yer alan giriş “Hero” alanını buradan yönetin.
+                </p>
+            </div>
+
+            @if (Model == null)
+            {
+                <a href="/Admin/Banner/Create" class="btn btn-outline-primary">
+                    <i class="bi bi-plus-circle"></i>
+                    Ekle
+                </a>
+            }
+            else
+            {
+                <a href="/Admin/Banner/Update" class="btn btn-outline-primary">
+                    <i class="bi bi-pencil-square"></i>
+                    Düzenle
+                </a>
+            }
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        @if (Model != null)
+        {
+            <div class="text-muted small mb-3">
+                <span>
+                    Oluşturulma:
+                    <strong>@Model.CreatedDate.ToString("dd.MM.yyyy HH:mm")</strong>
+                </span>
+                <br />
+                <span>
+                    Güncellenme:
+                    <strong>
+                        @(Model.UpdatedDate.HasValue
+                                            ? Model.UpdatedDate.Value.ToString("dd.MM.yyyy HH:mm")
+                                            : "Henüz güncellenmedi")
+                    </strong>
+                </span>
+            </div>
+        }
+
+
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Başlık</label>
+                        <input type="text"
+                               class="form-control"
+                               value="@Model.Title"
+                               disabled />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Açıklama</label>
+                        <textarea class="form-control"
+                                  rows="5"
+                                  disabled>@Model.Description</textarea>
+                    </div>
+
+                    <div>
+                        @if (Model == null)
+                        {
+                            <span class="badge bg-warning">
+                                Henüz içerik oluşturulmadı
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">
+                                Aktif
+                            </span>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+      
+        <div class="col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h6 class="fw-semibold mb-3">Görsel Önizleme</h6>
+
+                    <img src="@(string.IsNullOrWhiteSpace(Model?.ImageUrl)
+                                                          ? "/img/placeholder.png"
+                                                          : Model.ImageUrl)"
+                         class="img-fluid rounded border"
+                         style="max-height:220px; object-fit:cover;" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

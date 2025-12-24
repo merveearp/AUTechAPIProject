@@ -3,132 +3,134 @@
 _HomeSideBarMenuComponent
 *@
 
-
 <div class="sidebar-menu">
     <ul class="menu">
+
         <li class="sidebar-title">Menu</li>
 
-        <li class="sidebar-item active ">
-            <a asp-controller="Home" asp-action="Index" class='sidebar-link'>
-                <i class="bi bi-grid-fill"></i>
+        <li class="sidebar-item active">
+            <a asp-controller="Home" asp-action="Index" class="sidebar-link">
+                <i class="bi bi-speedometer2"></i>
                 <span>Anasayfa</span>
             </a>
         </li>
 
-
         <li class="sidebar-item active">
-            <a asp-controller="AI" asp-action="Index" class='sidebar-link'>
-                <i class="bi bi-map-fill"></i>
-                <span>AI </span>
-            </a>
-
-        </li>
-
-
-        <li class="sidebar-item active ">
-            <a asp-controller="About" asp-action="Index" class='sidebar-link'>
-                <i class="bi bi-file-earmark-medical-fill"></i>
-                <span>Hakkımda </span>
+            <a asp-controller="AI" asp-action="Index" class="sidebar-link">
+                <i class="bi bi-cpu-fill"></i>
+                <span>AI Yönetimi</span>
             </a>
         </li>
 
         <li class="sidebar-item active">
-            <a asp-controller="Banner" asp-action="Index" class='sidebar-link'>
-                <i class="bi bi-pen-fill"></i>
-                <span>Tanıtım Alanı </span>
+            <a asp-controller="About" asp-action="Index" class="sidebar-link">
+                <i class="bi bi-info-circle-fill"></i>
+                <span>Hakkımda</span>
             </a>
         </li>
 
         <li class="sidebar-item active">
-            <a asp-controller="Choose" asp-action="Index" class='sidebar-link'>
-                <i class="bi bi-pen-fill"></i>
-                <span>Choose Alanı </span>
+            <a asp-controller="Banner" asp-action="Index" class="sidebar-link">
+                <i class="bi bi-megaphone-fill"></i>
+                <span>Tanıtım Alanı</span>
+            </a>
+        </li>
+
+        <li class="sidebar-item active">
+            <a asp-controller="Choose" asp-action="Index" class="sidebar-link">
+                <i class="bi bi-check2-circle"></i>
+                <span>Choose Alanı</span>
             </a>
         </li>
 
         <li class="sidebar-title">Listeler</li>
 
-        <li class="sidebar-item ">
-            <a asp-controller="AboutItem" asp-action="Index" class='sidebar-link'>
-                <i class="bi bi-hexagon-fill"></i>
+        <li class="sidebar-item">
+            <a asp-controller="AboutItem" asp-action="Index" class="sidebar-link">
+                <i class="bi bi-list-check"></i>
                 <span>Hakkımda Itemleri</span>
             </a>
         </li>
 
-        <li class="sidebar-item ">
-            <a asp-controller="Category" asp-action="Index" class='sidebar-link'>
-                <i class="bi bi-stack"></i>
+        <li class="sidebar-item">
+            <a asp-controller="ChooseItem" asp-action="Index" class="sidebar-link">
+                <i class="bi bi-ui-checks-grid"></i>
+                <span>Choose Itemleri</span>
+            </a>
+        </li>
+
+        <li class="sidebar-item">
+            <a asp-controller="Category" asp-action="Index" class="sidebar-link">
+                <i class="bi bi-tags-fill"></i>
                 <span>Kategoriler</span>
             </a>
         </li>
 
-        <li class="sidebar-item ">
-            <a asp-controller="Project" asp-action="Index" class='sidebar-link'>
-                <i class="bi bi-grid-1x2-fill"></i>
+        <li class="sidebar-item">
+            <a asp-controller="Project" asp-action="Index" class="sidebar-link">
+                <i class="bi bi-box-seam-fill"></i>
                 <span>Ürünler</span>
             </a>
         </li>
 
-        <li class="sidebar-item ">
-            <a asp-controller="Feature" asp-action="Index" class='sidebar-link'>
-                <i class="bi bi-basket-fill"></i>
-                <span>Hizmetlerimiz </span>
+        <li class="sidebar-item">
+            <a asp-controller="Feature" asp-action="Index" class="sidebar-link">
+                <i class="bi bi-briefcase-fill"></i>
+                <span>Hizmetlerimiz</span>
             </a>
         </li>
-        <li class="sidebar-item  ">
-            <a asp-controller="ChooseItem" asp-action="Index" class='sidebar-link'>
-                <i class="bi bi-pen-fill"></i>
-                <span>Choose Itemleri </span>
+
+        <li class="sidebar-item">
+            <a asp-controller="TeamWorker" asp-action="Index" class="sidebar-link">
+                <i class="bi bi-people-fill"></i>
+                <span>Ekip Üyeleri</span>
             </a>
         </li>
-       
-        <li class="sidebar-item  ">
-            <a asp-controller="Testimonial" asp-action="Index" class='sidebar-link'>
-                <i class="bi bi-bar-chart-fill"></i>
+
+        <li class="sidebar-item">
+            <a asp-controller="Testimonial" asp-action="Index" class="sidebar-link">
+                <i class="bi bi-chat-quote-fill"></i>
                 <span>Referanslar</span>
             </a>
         </li>
 
-        <li class="sidebar-item  ">
-            <a asp-controller="FAQ" asp-action="Index" class='sidebar-link'>
-                <i class="bi bi-cloud-arrow-up-fill"></i>
+        <li class="sidebar-item">
+            <a asp-controller="FAQ" asp-action="Index" class="sidebar-link">
+                <i class="bi bi-question-circle-fill"></i>
                 <span>Sıkça Sorulan Sorular</span>
             </a>
         </li>
 
-        <li class="sidebar-item  ">
-            <a asp-controller="SocialMedia" asp-action="Index" class='sidebar-link'>
-                <i class="bi bi-envelope-fill"></i>
+        <li class="sidebar-item">
+            <a asp-controller="Social" asp-action="Index" class="sidebar-link">
+                <i class="bi bi-share-fill"></i>
                 <span>Sosyal Medya</span>
             </a>
         </li>
 
-
         <li class="sidebar-title">Profil Yönetimi</li>
 
-        <li class="sidebar-item  has-sub">
-            <a href="#" class='sidebar-link'>
+        <li class="sidebar-item has-sub">
+            <a href="#" class="sidebar-link">
                 <i class="bi bi-person-badge-fill"></i>
                 <span>Authentication</span>
             </a>
-            <ul class="submenu ">
-                <li class="submenu-item ">
+            <ul class="submenu">
+                <li class="submenu-item">
                     <a href="auth-login.html">Login</a>
                 </li>
-                <li class="submenu-item ">
+                <li class="submenu-item">
                     <a href="auth-register.html">Register</a>
                 </li>
-                <li class="submenu-item ">
+                <li class="submenu-item">
                     <a href="auth-forgot-password.html">Forgot Password</a>
                 </li>
             </ul>
         </li>
 
-
-
-        <li class="sidebar-item  ">
-            <a asp-area="" asp-controller="Home" asp-action="Index" class='sidebar-link'>
-                <i class="bi bi-cash"></i>
+        <li class="sidebar-item">
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="sidebar-link">
+                <i class="bi bi-globe"></i>
                 <span>WEBUI Geçiş</span>
             </a>
         </li>

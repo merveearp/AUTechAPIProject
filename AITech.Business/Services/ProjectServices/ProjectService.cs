@@ -67,5 +67,18 @@ namespace AITech.Business.Services.ProjectServices
             await _unitOfWork.SaveChangesAsync();
         }
 
+        public async Task TMakeActiveAsync(int id)
+        {
+            var project = await _projectRepository.GetByIdAsync(id);
+            await _projectRepository.MakeActiveAsync(project);
+            await _unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task TMakePassiveAsync(int id)
+        {
+            var project = await _projectRepository.GetByIdAsync(id);
+            await _projectRepository.MakePassiveAsync(project);
+            await _unitOfWork.SaveChangesAsync();
+        }
     }
 }

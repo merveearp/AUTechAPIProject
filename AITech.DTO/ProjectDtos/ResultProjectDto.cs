@@ -13,6 +13,7 @@ namespace AITech.DTO.ProjectDtos
         string Description,
         string ImageUrl,
         int CategoryId,
+        bool IsActive,
         ResultCategoryDto Category
         );
 }

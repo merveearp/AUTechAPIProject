@@ -11,5 +11,7 @@ namespace AITech.DataAccess.Repositories.ProjectRepositories
     public interface IProjectRepository:IRepository<Project> 
     {
         Task<List<Project>> GetProjectWithCategoriesAsync();
+        Task MakeActiveAsync(Project project);
+        Task MakePassiveAsync(Project project);
     }
 }

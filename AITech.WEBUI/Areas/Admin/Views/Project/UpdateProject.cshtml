@@ -5,99 +5,122 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<div class="page-heading mb-4">
-    <h3 class="fw-bold">Proje Güncelle</h3>
-    <p class="text-muted">Mevcut projeyi buradan düzenleyebilirsiniz.</p>
-</div>
+<div class="container-fluid">
 
-<div class="row">
-
-    <div class="col-lg-8">
-        <div class="card shadow-sm border-0">
-            <div class="card-body">
-
-                <form asp-action="UpdateProject" asp-controller="Project" asp-area="Admin" method="post">
-
-
-
-                    <input type="hidden" asp-for="Id" />
-                   
-
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Proje Başlığı</label>
-                        <input type="text"
-                               asp-for="Title"
-                               class="form-control"
-                               placeholder="Proje başlığını giriniz" />
-                        <span class="text-danger small" asp-validation-for="Title"></span>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Proje Açıklaması</label>
-                        <textarea asp-for="Description"
-                                  class="form-control"
-                                  rows="4"
-                                  placeholder="Proje açıklamasını giriniz"></textarea>
-                    </div>
-
-
-
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Proje Görseli (URL)</label>
-                        <input type="text"
-                               asp-for="ImageUrl"
-                               id="imageUrlInput"
-                               class="form-control"
-                               placeholder="https://..." />
-                        <span class="text-danger small" asp-validation-for="ImageUrl"></span>
-                    </div>
-
-
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Proje Kategorisi</label>
-                        <select asp-for="CategoryId"
-                                class="form-select"
-                                asp-items="@ViewBag.categories">
-                            <option value="">Kategori Seçiniz</option>
-                        </select>
-                        <span class="text-danger small" asp-validation-for="CategoryId"></span>
-                    </div>
-
-
-                    <div class="d-flex gap-2 mt-4">
-                        <button type="submit" class="btn btn-primary">
-                            Güncelle
-                        </button>
-
-                        <a href="/Admin/Project"
-                           class="btn btn-outline-secondary">
-                            Vazgeç
-                        </a>
-                    </div>
-
-                </form>
-            </div>
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h3 class="fw-bold mb-1">Proje Güncelle</h3>
+            <p class="text-muted">
+                Mevcut projeyi buradan düzenleyebilirsiniz.
+            </p>
         </div>
     </div>
 
+    <div class="row">
 
-    <div class="col-lg-4">
-        <div class="card shadow-sm border-0">
-            <div class="card-body text-center">
-                <h6 class="fw-semibold mb-3">Görsel Önizleme</h6>
 
-                <img id="imagePreview"
-                     src="@(string.IsNullOrWhiteSpace(Model.ImageUrl)
-                                                 ? "/img/placeholder.png"
-                                                 : Model.ImageUrl)"
-                     class="img-fluid rounded border"
-                     style="max-height:240px; object-fit:cover;" />
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
 
-                <p class="text-muted small mt-2">
-                    Görsel URL değiştikçe otomatik güncellenir
-                </p>
+                    <form asp-action="UpdateProject" method="post">
+                        @Html.AntiForgeryToken()
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Proje Başlığı</label>
+                            <input asp-for="Title"
+                                   class="form-control"
+                                   placeholder="Proje başlığını giriniz" />
+                            <span asp-validation-for="Title" class="text-danger small"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Açıklama</label>
+                            <textarea asp-for="Description"
+                                      rows="4"
+                                      class="form-control"
+                                      placeholder="Proje açıklaması"></textarea>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Proje Görseli (URL)</label>
+                            <input asp-for="ImageUrl"
+                                   id="imageUrlInput"
+                                   class="form-control"
+                                   placeholder="https://..." />
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Kategori</label>
+                            <select asp-for="CategoryId"
+                                    asp-items="ViewBag.categories"
+                                    class="form-select">
+                                <option value="">Kategori Seçiniz</option>
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger small"></span>
+                        </div>
+
+
+                        <div class="mb-3 form-check form-switch">
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   asp-for="IsActive" />
+                            <label class="form-check-label fw-semibold">
+                                Aktif
+                            </label>
+                        </div>
+
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> Geri Dön
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check-circle"></i> Güncelle
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
             </div>
         </div>
+
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+
+                    <h6 class="fw-semibold mb-3">Görsel Önizleme</h6>
+
+                    <img id="imagePreview"
+                         src="@(string.IsNullOrWhiteSpace(Model.ImageUrl)
+                                                         ? "/img/placeholder.png"
+                                                         : Model.ImageUrl)"
+                         class="img-fluid rounded border mb-3"
+                         style="max-height:220px; object-fit:cover;"
+                         onerror="this.src='/img/placeholder.png'" />
+
+                    @if (!Model.IsActive)
+                    {
+                        <span class="badge bg-danger">Pasif</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-success">Aktif</span>
+                    }
+
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -107,8 +130,10 @@
         const imagePreview = document.getElementById("imagePreview");
 
         imageInput.addEventListener("input", function () {
-            if (this.value) {
+            if (this.value && this.value.trim() !== "") {
                 imagePreview.src = this.value;
+            } else {
+                imagePreview.src = "/img/placeholder.png";
             }
         });
     </script>

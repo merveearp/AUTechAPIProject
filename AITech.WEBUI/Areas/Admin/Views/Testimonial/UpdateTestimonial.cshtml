@@ -1,0 +1,130 @@
+﻿@model UpdateTestimonialDto
+
+@{
+    ViewData["Title"] = "Testimonial Güncelle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    
+    <div class="row mb-4">
+        <div class="col-12">
+            <h3 class="fw-bold mb-1">Testimonial Güncelle</h3>
+            <p class="text-muted">
+                Seçilen müşteri geri bildirimini buradan düzenleyin.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+
+       
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+
+                    <form asp-action="UpdateTestimonial" method="post">
+                        @Html.AntiForgeryToken()
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Ad Soyad</label>
+                            <input asp-for="Name"
+                                   class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+
+                       
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Ünvan / Pozisyon</label>
+                            <input asp-for="Title"
+                                   class="form-control" />
+                            <span asp-validation-for="Title" class="text-danger small"></span>
+                        </div>
+
+                        
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Yorum</label>
+                            <textarea asp-for="Comment"
+                                      rows="4"
+                                      class="form-control"></textarea>
+                            <span asp-validation-for="Comment" class="text-danger small"></span>
+                        </div>
+
+                        
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Profil Fotoğrafı (URL)</label>
+                            <input asp-for="ImageUrl"
+                                   id="imageUrlInput"
+                                   class="form-control"
+                                   placeholder="https://..." />
+                            <small class="text-muted">
+                                Boş bırakılırsa varsayılan görsel kullanılır.
+                            </small>
+                        </div>
+
+                       
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> Geri Dön
+                            </a>
+                            <button type="submit" class="btn btn-warning">
+                                <i class="bi bi-pencil-square"></i> Güncelle
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+       
+        <div class="col-lg-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+
+                    <h6 class="fw-semibold mb-3">Testimonial Önizleme</h6>
+
+                    <img id="imagePreview"
+                         src="@(string.IsNullOrEmpty(Model.ImageUrl)
+                                                         ? "/img/default-user.png"
+                                                         : Model.ImageUrl)"
+                         alt="Profil Önizleme"
+                         class="rounded-circle mb-3"
+                         style="width:120px;height:120px;object-fit:cover;border:3px solid #e5e5e5;"
+                         onerror="this.src='/img/default-user.png'" />
+
+                    <p class="text-muted small mb-2">
+                        Profil fotoğrafı güncellendiğinde önizleme otomatik yenilenir.
+                    </p>
+
+                    <hr />
+
+                    <p class="text-muted small mb-0">
+                        Güncellenen testimonial, web sitesindeki
+                        <strong>Referanslar</strong> alanında yayınlanacaktır.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    const imageInput = document.getElementById("imageUrlInput");
+    const imagePreview = document.getElementById("imagePreview");
+
+    imageInput.addEventListener("input", function () {
+        if (this.value && this.value.trim() !== "") {
+            imagePreview.src = this.value;
+        } else {
+            imagePreview.src = "/img/default-user.png";
+        }
+    });
+</script>

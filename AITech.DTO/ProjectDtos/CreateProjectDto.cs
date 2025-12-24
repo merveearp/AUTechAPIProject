@@ -11,6 +11,7 @@ namespace AITech.DTO.ProjectDtos
     string Title,
     string Description,
     string ImageUrl,
+    bool IsActive,
     int CategoryId
     );
         

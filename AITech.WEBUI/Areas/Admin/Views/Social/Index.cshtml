@@ -1,0 +1,93 @@
+﻿@model List<ResultSocialDto>
+
+@{
+    ViewData["Title"] = "Sosyal Medya";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+
+    <div class="row mb-4">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <div>
+                <h3 class="fw-bold mb-1">Sosyal Medya Yönetimi</h3>
+                <p class="text-muted mb-0">
+                    Web sitesinde yer alan sosyal medya bağlantılarını buradan yönetin.
+                </p>
+            </div>
+            <a asp-action="CreateSocial"
+               class="btn btn-primary">
+                <i class="bi bi-plus-circle me-1"></i> Yeni Ekle
+            </a>
+        </div>
+    </div>
+
+
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width:60px;">#</th>
+                        <th>Platform</th>
+                        <th>Icon</th>
+                        <th>URL</th>
+                        <th class="text-end" style="width:180px;">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @if (Model != null && Model.Any())
+                    {
+                        int count = 1;
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@count</td>
+                                <td class="fw-semibold">@item.Name</td>
+                                <td>
+                                    <span class="@item.Icon fs-5"></span>
+                                    <small class="text-muted ms-2">@item.Icon</small>
+                                </td>
+                                <td>
+                                    <a href="@item.Url"
+                                       target="_blank"
+                                       class="text-decoration-none">
+                                        @item.Url
+                                    </a>
+                                </td>
+                                <td class="text-end">
+                                    <a asp-action="UpdateSocial"
+                                       asp-route-id="@item.Id"
+                                       class="btn btn-sm btn-outline-warning me-1">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a asp-action="DeleteSocial"
+                                       asp-route-id="@item.Id"
+                                       class="btn btn-sm btn-outline-danger"
+                                       onclick="return confirm('Silmek istediğinize emin misiniz?');">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            count++;
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center text-muted py-4">
+                                Henüz sosyal medya kaydı bulunmamaktadır.
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</div>

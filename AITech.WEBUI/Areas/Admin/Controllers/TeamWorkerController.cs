@@ -18,20 +18,20 @@ namespace AITech.WEBUI.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateTeamWorker()
+        public IActionResult CreateTeam()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateTeamWorker(CreateTeamWorkerDto createDto)
+        public async Task<IActionResult> CreateTeam(CreateTeamWorkerDto createDto)
         {
             await _teamWorkerService.CreateAsync(createDto);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
-        public async Task<IActionResult> UpdateTeamWorker(int id)
+        public async Task<IActionResult> UpdateTeam(int id)
         {
             var value = await _teamWorkerService.GetByIdAsync(id);
 
@@ -40,14 +40,14 @@ namespace AITech.WEBUI.Areas.Admin.Controllers
 
         [HttpPost]
 
-        public async Task<IActionResult> UpdateTeamWorker(UpdateTeamWorkerDto updateDto)
+        public async Task<IActionResult> UpdateTeam(UpdateTeamWorkerDto updateDto)
         {
             await _teamWorkerService.UpdateAsync(updateDto);
             return RedirectToAction("Index");
 
         }
 
-        public async Task<IActionResult> DeleteTeamWorker(int id)
+        public async Task<IActionResult> DeleteTeam(int id)
         {
             await _teamWorkerService.DeleteAsync(id);
             return RedirectToAction("Index");

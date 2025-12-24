@@ -1,6 +1,7 @@
 ﻿using AITech.DataAccess.Context;
 using AITech.DataAccess.Repositories.GenericRepositories;
 using AITech.Entity.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,22 +10,29 @@ using System.Threading.Tasks;
 
 namespace AITech.DataAccess.Repositories.BannerRepositories
 {
-    public class BannerRepository : GenericRepository<Banner>, IBannerRepository
+    public class BannerRepository : IBannerRepository
     {
-        public BannerRepository(AppDbContext context) : base(context)
+        private readonly AppDbContext _context;
+
+        public BannerRepository(AppDbContext context)
         {
+            _context = context;
         }
 
-        public async Task MakeActiveAsync(Banner banner)
+       
+        public async Task CreateAsync(Banner banner)
         {
-            banner.IsActive = true;
-
+            await _context.Banners.AddAsync(banner);
         }
 
-        public async Task MakePassiveAsync(Banner banner)
+        public async  Task<Banner?> GetAsync()
         {
-            banner.IsActive = false;
+            return await _context.Banners.FirstOrDefaultAsync();
+        }
 
+        public void Update(Banner banner)
+        {
+            _context.Banners.Update(banner);
         }
     }
 }

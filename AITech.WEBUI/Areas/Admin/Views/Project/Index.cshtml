@@ -5,6 +5,13 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .grayscale {
+        filter: grayscale(100%);
+        opacity: 0.6;
+    }
+</style>
+
 <div class="page-heading mb-4 d-flex justify-content-between align-items-center">
     <h3 class="fw-bold">Projeler</h3>
     <a href="/Admin/Project/CreateProject" class="btn btn-primary btn-sm">
@@ -25,39 +32,68 @@
                 </tr>
             </thead>
             <tbody>
+
                 @if (Model != null && Model.Any())
                 {
                     var index = 0;
                     foreach (var item in Model)
                     {
                         index++;
-                        <tr>
+
+                        <tr class="@(item.IsActive ? "" : "table-light")">
+
                             <td class="text-muted">@index</td>
 
                            
                             <td>
                                 <div class="d-flex align-items-center gap-2">
+
                                     <img src="@item.ImageUrl"
+                                         class="@(item.IsActive ? "" : "grayscale")"
                                          style="width:45px;height:45px;object-fit:cover;border-radius:50%" />
-                                    <span class="fw-semibold">@item.Title</span>
-                                </div>
+
+                                    <div>
+                                        <span class="fw-semibold">@item.Title</span>
+
+                                        @if (!item.IsActive)
+                                        {
+                                            <div class="text-danger small fw-semibold">
+                                                Aktif Değil
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="text-success small fw-semibold">
+                                                Aktif
+                                            </div>
+                                        }
+                            </div>
+
+                        </div>
+                    </td>
+
+                 
+                    <td class="text-muted small">
+                        @(item.Description.Length > 120
+                                                ? item.Description.Substring(0, 120) + "..."
+                                                : item.Description)
                             </td>
 
                             
-                            <td class="text-muted small">
-                                @(item.Description.Length > 120
-                                                        ? item.Description.Substring(0, 120) + "..."
-                                                        : item.Description)
-                            </td>
-
-                          
                             <td>
-                                <span class="badge bg-secondary">
-                                    @item.Category.Name
-                                </span>
+                                @if (item.Category != null)
+                                {
+                                    <span class="badge @(item.IsActive ? "bg-secondary" : "bg-dark")">
+                                        @item.Category.Name
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">Kategori Yok</span>
+                                }
                             </td>
 
-                           
+     
                             <td class="text-end">
                                 <a href="/Admin/Project/UpdateProject/@item.Id"
                                    class="btn btn-info btn-sm me-1">
@@ -69,6 +105,7 @@
                                     Sil
                                 </button>
                             </td>
+
                         </tr>
                     }
                 }
@@ -80,6 +117,7 @@
                         </td>
                     </tr>
                 }
+
             </tbody>
         </table>
     </div>

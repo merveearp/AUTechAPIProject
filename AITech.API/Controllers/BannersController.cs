@@ -10,20 +10,12 @@ namespace AITech.API.Controllers
     public class BannersController(IBannerService _bannerService) : ControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> Get()
         {
-            var banners = await _bannerService.TGetAllAsync();
+            var banners = await _bannerService.TGetAsync();
             return Ok(banners);
         }
 
-
-        //localhost:7000/api/banners/2
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
-        {
-            var banner = await _bannerService.TGetByIdAsync(id);
-            return Ok(banner);
-        }
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateBannerDto createDto)
@@ -39,30 +31,7 @@ namespace AITech.API.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            await _bannerService.TDeleteAsync(id);
-            return NoContent();
-
-        }
-
-        [HttpPatch("makeActive/{id}")]
-        public async Task<IActionResult> MakeActive(int id)
-        {
-            await _bannerService.TMakeActiveAsync(id);
-            return NoContent();
-        }
-
-
-        [HttpPatch("makePassive/{id}")]
-        public async Task<IActionResult> MakePassive(int id)
-        {
-            await _bannerService.TMakeActiveAsync(id);
-            return NoContent();
-        }
-
-
+ 
     }
 
 }
