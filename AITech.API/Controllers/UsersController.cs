@@ -19,8 +19,9 @@ namespace AITech.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginUserDto loginDto)
         {
-            await _userService.LoginAsync(loginDto);
-            return Ok("Giriş başarılı");
+            var response = await _userService.LoginAsync(loginDto);
+            return Ok(response);
         }
+
     }
 }

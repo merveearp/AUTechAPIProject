@@ -1,4 +1,5 @@
-﻿using AITech.DTO.UserDtos;
+﻿using AITech.DTO.TokenDtos;
+using AITech.DTO.UserDtos;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace AITech.Business.Services.UserServices
     public interface IUserService
     {
         Task CreateAsync(RegisterUserDto registerDto);
-        Task LoginAsync(LoginUserDto userDto);
+        Task<LoginResponseDto> LoginAsync(LoginUserDto userDto);
+
     }
 }

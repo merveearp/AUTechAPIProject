@@ -1,4 +1,6 @@
-﻿using AITech.DTO.UserDtos;
+﻿using AITech.Business.Services.TokenServices;
+using AITech.DTO.TokenDtos;
+using AITech.DTO.UserDtos;
 using AITech.Entity.Entities;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -13,12 +15,13 @@ namespace AITech.Business.Services.UserServices
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-       
-        public UserService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        private readonly ITokenService _tokenService;
+
+        public UserService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenService tokenService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            
+            _tokenService = tokenService;
         }
 
         public async Task CreateAsync(RegisterUserDto registerDto)
@@ -40,18 +43,15 @@ namespace AITech.Business.Services.UserServices
                 FirstName = registerDto.FirstName,
                 LastName = registerDto.LastName,
                 UserName = registerDto.UserName,
-                Email = registerDto.Email
+                Email = registerDto.Email,
                
             };
 
             var result = await _userManager.CreateAsync(user,registerDto.Password);
-  
-
-             
             
         }
 
-        public async Task LoginAsync(LoginUserDto userDto)
+        public async Task<LoginResponseDto> LoginAsync(LoginUserDto userDto)
         {
             var user = await _userManager.FindByNameAsync(userDto.UserName);
             if (user == null)
@@ -66,6 +66,10 @@ namespace AITech.Business.Services.UserServices
                 throw new Exception("Email veya şifre hatalı");
             }
 
+            var token = _tokenService.CreateToken(user);
+            return token;
+
         }
+
     }
 }

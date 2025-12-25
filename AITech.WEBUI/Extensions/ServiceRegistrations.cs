@@ -10,6 +10,7 @@ using AITech.WEBUI.Services.ProjectService;
 using AITech.WEBUI.Services.SocialServices;
 using AITech.WEBUI.Services.TeamWorkerServices;
 using AITech.WEBUI.Services.TestimonialServices;
+using AITech.WEBUI.Services.UserServices;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using System.Reflection;
@@ -32,6 +33,7 @@ namespace AITech.WEBUI.Extensions
             services.AddScoped<IAboutItemService , AboutItemService>();
             services.AddScoped<ITeamWorkerService , TeamWorkerService>();
             services.AddScoped<ITestimonialService , TestimonialService>();
+            services.AddScoped<IUserService , UserService>();
 
             services.AddFluentValidationAutoValidation()
                     .AddFluentValidationClientsideAdapters()
