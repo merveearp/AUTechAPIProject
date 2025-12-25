@@ -1,36 +1,145 @@
-﻿
+﻿@using AITech.WEBUI.DTOs.AboutDtos
+@model ResultAboutDto
 @*
     _HomeAboutViewComponent
 *@
 
-<div class="container-fluid py-5">
-    <div class="container">
+<div class="container-fluid py-5 about-section">
+    <div class="container py-4">
         <div class="row g-5 align-items-center">
+           
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                <div class="about-img">
-                    <img class="img-fluid" src="~/WEBUI/img/about-img.jpg">
+                <div class="about-img-wrapper position-relative">
+                   
+                    <img class="img-fluid rounded-4 shadow-lg about-main-img"
+                         src="@Url.Content(Model.ImageUrl)"
+                         alt="@Model.Title" />
+
+                   
+                    <div class="about-img-border"></div>
+
+                    
+                    <div class="about-dot-pattern"></div>
                 </div>
             </div>
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">About Us</div>
-                <h1 class="mb-4">We Make Your Business Smarter with Artificial Intelligence</h1>
-                <p class="mb-4">
-                    Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
-                    amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus
-                    clita duo justo et tempor eirmod magna dolore erat amet
-                </p>
-                <p class="mb-4">
-                    Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no
-                    labore lorem sit. Sanctus clita duo justo et tempor.
-                </p>
-             
-                
-                @await Component.InvokeAsync("_HomeAboutItemComponent")
-               
 
-                @await Component.InvokeAsync("_HomeSocialComponent")
+            
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                
+                <div class="d-inline-flex align-items-center btn btn-sm border rounded-pill text-primary px-4 py-2 mb-3 about-badge">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <span class="fw-semibold">Hakkımızda</span>
+                </div>
+
+               
+                <h1 class="mb-4 fw-bold" style="line-height: 1.3;">@Model.Title</h1>
+
+                
+                <p class="mb-4 text-muted fs-6" style="line-height: 1.8;">
+                    @Model.Description
+                </p>
+
+                <div class="mb-4">
+                    @await Component.InvokeAsync("_HomeAboutItemComponent")
+                </div>
+
+                
+                <div class="mt-4">
+                    @await Component.InvokeAsync("_HomeSocialComponent")
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .about-section {
+        background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);
+    }
+
+
+    .about-img-wrapper {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .about-main-img {
+        position: relative;
+        z-index: 2;
+        transition: transform 0.4s ease;
+    }
+
+        .about-main-img:hover {
+            transform: translateY(-8px);
+        }
+
+
+    .about-img-border {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 100%;
+        height: 100%;
+        border: 3px solid var(--bs-primary);
+        border-radius: 1.5rem;
+        z-index: 1;
+        opacity: 0.3;
+        transition: all 0.4s ease;
+    }
+
+    .about-img-wrapper:hover .about-img-border {
+        top: 25px;
+        left: 25px;
+        opacity: 0.5;
+    }
+
+
+    .about-dot-pattern {
+        position: absolute;
+        bottom: -20px;
+        right: -20px;
+        width: 100px;
+        height: 100px;
+        background-image: radial-gradient(circle, var(--bs-primary) 2px, transparent 2px);
+        background-size: 15px 15px;
+        opacity: 0.2;
+        z-index: 0;
+    }
+
+
+    .about-badge {
+        background: rgba(13, 110, 253, 0.1);
+        border: 1px solid rgba(13, 110, 253, 0.3) !important;
+        transition: all 0.3s ease;
+    }
+
+        .about-badge:hover {
+            background: rgba(13, 110, 253, 0.15);
+            transform: translateX(5px);
+        }
+
+    
+    (max-width: 991px) {
+        .about-img-border {
+            top: 15px;
+            left: 15px;
+        }
+
+        .about-dot-pattern {
+            bottom: -15px;
+            right: -15px;
+            width: 80px;
+            height: 80px;
+        }
+    }
+
+     (max-width: 576px) {
+        .about-img-border {
+            display: none;
+        }
+
+        .about-dot-pattern {
+            display: none;
+        }
+    }
+</style>

@@ -1,0 +1,12 @@
+﻿@using AITech.WEBUI.DTOs.ChooseItemDtos
+@model List<ResultChooseItemDto>
+
+@foreach (var item in Model)
+{
+    <div class="d-flex align-items-center text-white mb-3">
+        <div class="btn-sm-square bg-white text-primary rounded-circle me-3 flex-shrink-0">
+            <i class="fa fa-check"></i>
+        </div>
+        <span>@item.Item</span>
+    </div>
+}

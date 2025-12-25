@@ -28,7 +28,7 @@ namespace AITech.WEBUI.Services.ChooseItemServices
 
         public async Task<List<ResultChooseItemDto>> GetAllAsync()
         {
-            var response = await _httpClient.GetAsync("ChooseItem");
+            var response = await _httpClient.GetAsync("ChooseItems");
             var jsonContent = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<List<ResultChooseItemDto>>(jsonContent);
         }

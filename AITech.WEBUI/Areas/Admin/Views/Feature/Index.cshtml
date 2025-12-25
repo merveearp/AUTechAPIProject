@@ -1,8 +1,100 @@
 ﻿@model List<ResultFeatureDto>
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Hizmetler";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="container-fluid">
 
+
+    <div class="row mb-4">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <div>
+                <h3 class="fw-bold mb-1">Hizmetler (Features)</h3>
+                <p class="text-muted mb-0">
+                    Web sitesinde yer alan hizmet ve özellikleri buradan yönetin.
+                </p>
+            </div>
+            <a asp-action="CreateFeature"
+               class="btn btn-primary">
+                <i class="bi bi-plus-circle me-1"></i> Yeni Hizmet Ekle
+            </a>
+        </div>
+    </div>
+
+
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width:60px;">#</th>
+                        <th>Başlık</th>
+                        <th>Açıklama</th>
+                        <th style="width:180px;">Icon</th>
+                        <th class="text-end" style="width:180px;">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @if (Model != null && Model.Any())
+                    {
+                        int count = 1;
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-muted">@count</td>
+
+                                <td class="fw-semibold">
+                                    @item.Title
+                                </td>
+
+                                <td class="text-muted small">
+                                    @(item.Description.Length > 100
+                                                                ? item.Description.Substring(0, 100) + "..."
+                                                                : item.Description)
+                                </td>
+
+                                <td>
+                                    <span class="@item.Icon fs-4"></span>
+                                    <div class="small text-muted">@item.Icon</div>
+                                </td>
+
+                                <td class="text-end">
+                                    <a asp-action="UpdateFeature"
+                                       asp-route-id="@item.Id"
+                                       class="btn btn-sm btn-outline-warning me-1"
+                                       title="Güncelle">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+
+                                    <a asp-action="DeleteFeature"
+                                       asp-route-id="@item.Id"
+                                       class="btn btn-sm btn-outline-danger"
+                                       onclick="return confirm('Bu hizmeti silmek istediğinize emin misiniz?');"
+                                       title="Sil">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            count++;
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center text-muted py-4">
+                                Henüz hizmet kaydı bulunmamaktadır.
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</div>

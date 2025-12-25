@@ -1,7 +1,5 @@
 ﻿using AITech.Business.Services.ChooseItemServices;
-using AITech.DTO.AboutItemDtos;
 using AITech.DTO.ChooseItemDtos;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AITech.API.Controllers

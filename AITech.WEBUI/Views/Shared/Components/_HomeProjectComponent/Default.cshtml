@@ -1,50 +1,109 @@
-﻿@*
+﻿@model List<ResultProjectDto>
+
+@*
     _HomeProjectViewComponent
 *@
 
 <div class="container-fluid bg-light py-5">
     <div class="container py-5">
         <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
-            <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">Case Study</div>
-            <h1 class="mb-4">Explore Our Recent AI Case Studies</h1>
+            <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">Projeler</div>
+            <h1 class="mb-4">Güncel Yapay Zekâ Proje Çalışmalarımızı Keşfedin</h1>
         </div>
         <div class="row g-4">
-            <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
-                <div class="case-item position-relative overflow-hidden rounded mb-2">
-                    <img class="img-fluid" src="~/WEBUI/img/project-1.jpg" alt="">
-                    <a class="case-overlay text-decoration-none" href="">
-                        <small>Robotic Automation</small>
-                        <h5 class="lh-base text-white mb-3">
-                            Lorem elitr magna stet eirmod labore amet labore clita
-                        </h5>
-                        <span class="btn btn-square btn-primary"><i class="fa fa-arrow-right"></i></span>
-                    </a>
-                </div>
+
+           @foreach (var item in Model)
+{
+    if (item.IsActive)
+    {
+        <div class="col-lg-4 col-md-6 wow fadeIn" data-wow-delay="0.2s">
+            <div class="case-item position-relative overflow-hidden rounded shadow-sm">
+
+                <img class="img-fluid w-100"
+                    src="@Url.Content(item.ImageUrl)"
+                     alt="@item.Title"
+                     style="height:250px; object-fit:cover;" />
+
+                            <a class="case-overlay text-decoration-none">
+                                <small class="text-uppercase">
+                                    @item.Category.Name
+                                </small>
+
+                                <h5 class="lh-base text-white mb-3">
+                                    @item.Title
+                                </h5>
+
+                                <span class="btn btn-square btn-info project-detail-btn"
+                                      data-id="@item.Id"
+                                      style="cursor:pointer;">
+                                    <i class="fa fa-arrow-right"></i>
+                                </span>
+                            </a>
+
+
             </div>
-            <div class="col-lg-4 wow fadeIn" data-wow-delay="0.5s">
-                <div class="case-item position-relative overflow-hidden rounded mb-2">
-                    <img class="img-fluid" src="~/WEBUI/img/project-2.jpg" alt="">
-                    <a class="case-overlay text-decoration-none" href="">
-                        <small>Machine learning</small>
-                        <h5 class="lh-base text-white mb-3">
-                            Lorem elitr magna stet eirmod labore amet labore clita
-                        </h5>
-                        <span class="btn btn-square btn-primary"><i class="fa fa-arrow-right"></i></span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 wow fadeIn" data-wow-delay="0.7s">
-                <div class="case-item position-relative overflow-hidden rounded mb-2">
-                    <img class="img-fluid" src="~/WEBUI/img/project-3.jpg" alt="">
-                    <a class="case-overlay text-decoration-none" href="">
-                        <small>Predictive Analysis</small>
-                        <h5 class="lh-base text-white mb-3">
-                            Lorem elitr magna stet eirmod labore amet labore clita
-                        </h5>
-                        <span class="btn btn-square btn-primary"><i class="fa fa-arrow-right"></i></span>
-                    </a>
-                </div>
-            </div>
+        </div>
+    }
+}          
+          
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="projectDetailModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="projectTitle"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <img id="projectImage"
+                     class="img-fluid rounded mb-3"
+                     style="width:100%; max-height:300px; object-fit:cover;" />
+
+                <p class="text-muted mb-2" id="projectCategory"></p>
+
+                <p id="projectDescription"></p>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).on("click", ".project-detail-btn", function (e) {
+
+        e.preventDefault();
+        e.stopPropagation(); 
+
+        const projectId = $(this).data("id");
+
+        $.ajax({
+            url: `/Home/GetById?id=${projectId}`,
+            type: "GET",
+            success: function (data) {
+
+                $("#projectTitle").text(data.title);
+                $("#projectDescription").text(data.description);
+                $("#projectImage").attr("src", data.imageUrl);
+
+                const modal = new bootstrap.Modal(
+                    document.getElementById("projectDetailModal")
+                );
+                modal.show();
+            },
+            error: function () {
+                alert("Proje detayları yüklenirken hata oluştu.");
+            }
+        });
+    });
+
+</script>
+
+

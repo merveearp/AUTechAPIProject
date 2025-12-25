@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AITech.WEBUI.Services.BannerServices;
+using Microsoft.AspNetCore.Mvc;
 
-namespace AITech.WEBUI.ViewComponents.Home
+namespace AITech.WEBUI.ViewComponents.Home_Index
 {
-    public class _HomeHeroComponent :ViewComponent
+    public class _HomeHeroComponent(IBannerService _bannerService) :ViewComponent
     {
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View();
+            var entities = await _bannerService.GetAsync();
+            return View(entities);
         }
     }
 }

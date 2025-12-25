@@ -1,8 +1,108 @@
 ﻿@model CreateFeatureDto
+
 @{
-    ViewData["Title"] = "CreateFeature";
+    ViewData["Title"] = "Yeni Hizmet Ekle";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>CreateFeature</h1>
+<div class="container-fluid">
+
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <h3 class="fw-bold mb-1">Yeni Hizmet Ekle</h3>
+            <p class="text-muted">
+                Web sitesinde gösterilecek yeni hizmeti buradan ekleyin.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+
+                    <form asp-action="CreateFeature" method="post">
+                        @Html.AntiForgeryToken()
+
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Başlık</label>
+                            <input asp-for="Title"
+                                   class="form-control"
+                                   placeholder="Örn: Robotik Otomasyon" />
+                            <span asp-validation-for="Title" class="text-danger small"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Açıklama</label>
+                            <textarea asp-for="Description"
+                                      rows="4"
+                                      class="form-control"
+                                      placeholder="Hizmet açıklaması"></textarea>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Icon (FontAwesome)</label>
+                            <input asp-for="Icon"
+                                   id="iconInput"
+                                   class="form-control"
+                                   placeholder="fa fa-robot" />
+                            <small class="text-muted">
+                                Örn: <code>fa fa-robot</code>
+                            </small>
+                            <span asp-validation-for="Icon" class="text-danger small"></span>
+                        </div>
+
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> Geri Dön
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check-circle"></i> Kaydet
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+
+                    <h6 class="fw-semibold mb-3">Icon Önizleme</h6>
+
+                    <div class="display-4 mb-3">
+                        <i id="iconPreview" class="fa fa-question-circle"></i>
+                    </div>
+
+                    <p class="text-muted small">
+                        Icon class girildikçe önizleme otomatik güncellenir.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+    <script>
+        const iconInput = document.getElementById("iconInput");
+        const iconPreview = document.getElementById("iconPreview");
+
+        iconInput.addEventListener("input", function () {
+            iconPreview.className = this.value || "fa fa-question-circle";
+        });
+    </script>
 

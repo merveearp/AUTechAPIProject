@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace AITech.WEBUI.ViewComponents.Home
+namespace AITech.WEBUI.ViewComponents.Home_Index
 {
-    public class _HomeFeatureComponent :ViewComponent
+    public class _HomeAIComponent :ViewComponent
     {
         public async Task<IViewComponentResult> InvokeAsync()
         {

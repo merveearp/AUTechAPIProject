@@ -1,0 +1,14 @@
+﻿@using AITech.WEBUI.DTOs.FeatureDtos
+@model List<ResultFeatureDto>
+@*
+    _LayoutServiceComponent
+*@
+
+     <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">
+                <h5 class="text-white mb-4">Hizmetlerimiz</h5>
+                @foreach(var item in Model)
+                {
+                    <a class="btn btn-link" href="">@item.Title</a>
+                }
+               
+            </div>

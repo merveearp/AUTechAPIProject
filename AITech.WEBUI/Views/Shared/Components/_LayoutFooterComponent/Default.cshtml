@@ -1,75 +1,162 @@
-﻿
-@*
+﻿@*
     _LayoutFooterComponent
 *@
-
-<div class="container-fluid bg-dark text-white-50 footer pt-5">
+<div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
     <div class="container py-5">
         <div class="row g-5">
+           
             <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
-                <a href="index.html" class="d-inline-block mb-3">
-                    <h1 class="text-white">AI<span class="text-primary">.</span>Tech</h1>
+                <a href="/" class="d-inline-block mb-3 text-decoration-none">
+                    <h1 class="text-white mb-0">AI<span class="text-primary">.</span>Tech</h1>
                 </a>
-                <p class="mb-0">
-                    Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
-                    amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus
-                    clita duo justo et tempor
+                <p class="mb-0 mt-3" style="line-height: 1.8;">
+                    Yapay zeka ve teknoloji alanında yenilikçi çözümler sunarak işletmelerin dijital dönüşüm yolculuğunda güvenilir partneri oluyoruz.
                 </p>
             </div>
 
+            <!-- İletişim Bilgileri -->
             <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
-                <h5 class="text-white mb-4">Get In Touch</h5>
-                <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
-
-                <div class="d-flex pt-2">
-                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-instagram"></i></a>
-                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                <h5 class="text-white mb-4 fw-bold">İletişim</h5>
+                <div class="d-flex flex-column gap-3">
+                    <p class="mb-0">
+                        <i class="fa fa-map-marker-alt me-3 text-primary"></i>
+                        Maslak, İstanbul, Türkiye
+                    </p>
+                    <p class="mb-0">
+                        <i class="fa fa-phone-alt me-3 text-primary"></i>
+                        +90 (212) 123 45 67
+                    </p>
+                    <p class="mb-0">
+                        <i class="fa fa-envelope me-3 text-primary"></i>
+                        info@aitech.com.tr
+                    </p>
                 </div>
-          
-            
+
+                <!-- Sosyal Medya -->
+                <div class="mt-4">
+                    <h6 class="text-white mb-3">Bizi Takip Edin</h6>
+                    @await Component.InvokeAsync("_HomeSocialComponent")
+                </div>
             </div>
+
+            <!-- Hızlı Linkler -->
             <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">
-                <h5 class="text-white mb-4">Popular Link</h5>
-                <a class="btn btn-link" href="">About Us</a>
-                <a class="btn btn-link" href="">Contact Us</a>
-                <a class="btn btn-link" href="">Privacy Policy</a>
-                <a class="btn btn-link" href="">Terms & Condition</a>
-                <a class="btn btn-link" href="">Career</a>
+                <h5 class="text-white mb-4 fw-bold">Hızlı Linkler</h5>
+                <div class="d-flex flex-column">
+                    <a class="btn btn-link text-white-50 ps-0" href="/hakkimizda">
+                        <i class="fas fa-angle-right me-2"></i>Hakkımızda
+                    </a>
+                    <a class="btn btn-link text-white-50 ps-0" href="/iletisim">
+                        <i class="fas fa-angle-right me-2"></i>İletişim
+                    </a>
+                    <a class="btn btn-link text-white-50 ps-0" href="/gizlilik-politikasi">
+                        <i class="fas fa-angle-right me-2"></i>Gizlilik Politikası
+                    </a>
+                    <a class="btn btn-link text-white-50 ps-0" href="/kullanim-kosullari">
+                        <i class="fas fa-angle-right me-2"></i>Kullanım Koşulları
+                    </a>
+                    <a class="btn btn-link text-white-50 ps-0" href="/kariyer">
+                        <i class="fas fa-angle-right me-2"></i>Kariyer
+                    </a>
+                </div>
             </div>
-            <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">
-                <h5 class="text-white mb-4">Our Services</h5>
-                <a class="btn btn-link" href="">Robotic Automation</a>
-                <a class="btn btn-link" href="">Machine learning</a>
-                <a class="btn btn-link" href="">Predictive Analysis</a>
-                <a class="btn btn-link" href="">Data Science</a>
-                <a class="btn btn-link" href="">Robot Technology</a>
-            </div>
+
+           
+            @await Component.InvokeAsync("_LayoutServiceComponent")
         </div>
     </div>
 
+   
     <div class="container wow fadeIn" data-wow-delay="0.1s">
-        <div class="copyright">
+        <div class="copyright border-top border-secondary pt-4">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="#">Merve Türk</a>, All Right Reserved.
-
-
-                    Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom">Yapay Zeka </a>
+                    <span class="text-white-50">
+                        &copy; <span id="currentYear"></span>
+                        <a class="border-bottom text-white" href="/">AI.Tech</a>.
+                        Tüm hakları saklıdır.
+                    </span>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    <div class="footer-menu">
-                        <a href="">Home</a>
-                        <a href="">Cookies</a>
-                        <a href="">Help</a>
-                        <a href="">FAQs</a>
-                    </div>
+                    <span class="text-white-50">
+                        Tasarım:
+                        <a class="border-bottom text-white" href="https://github.com/merveturk" target="_blank">Merve Türk</a>
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .footer {
+        background: linear-gradient(to bottom, #1a1a2e 0%, #0f0f1e 100%);
+        position: relative;
+    }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(13, 110, 253, 0.5), transparent);
+        }
+
+       
+        .footer .btn-link {
+            padding: 0.5rem 0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+            .footer .btn-link:hover {
+                color: #ffffff !important;
+                padding-left: 0.5rem !important;
+            }
+
+            .footer .btn-link i {
+                transition: transform 0.3s ease;
+            }
+
+            .footer .btn-link:hover i {
+                transform: translateX(5px);
+            }
+
+   
+    .copyright a {
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+        .copyright a:hover {
+            color: var(--bs-primary) !important;
+            border-bottom-color: var(--bs-primary) !important;
+        }
+
+    
+    .footer .fa {
+        color: var(--bs-primary);
+    }
+
+    
+    .footer h5::after {
+        content: '';
+        display: block;
+        width: 50px;
+        height: 2px;
+        background: var(--bs-primary);
+        margin-top: 0.75rem;
+    }
+</style>
+
+<script>
+   
+    document.addEventListener('DOMContentLoaded', function() {
+        const yearElement = document.getElementById('currentYear');
+        if (yearElement) {
+            yearElement.textContent = new Date().getFullYear();
+        }
+    });
+</script>

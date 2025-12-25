@@ -1,24 +1,409 @@
-﻿
+﻿@model ResultBannerDto
 @*
     _HomeHeroViewComponent
 *@
+<div class="container-fluid pt-5 bg-primary hero-header mb-5 position-relative overflow-hidden">
+   
+    <div class="hero-bg-shapes position-absolute w-100 h-100 top-0 start-0">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
 
-<div class="container-fluid pt-5 bg-primary hero-header mb-5">
-    <div class="container pt-5">
-        <div class="row g-5 pt-5">
-            <div class="col-lg-6 align-self-center text-center text-lg-start mb-lg-5">
-                <div class="btn btn-sm border rounded-pill text-white px-3 mb-3 animated slideInRight">AI.Tech</div>
-                <h1 class="display-4 text-white mb-4 animated slideInRight">Artificial Intelligence for Your Business</h1>
-                <p class="text-white mb-4 animated slideInRight">
-                    Tempor rebum no at dolore lorem clita rebum rebum ipsum
-                    rebum stet dolor sed justo kasd. Ut dolor sed magna dolor sea diam. Sit diam sit
+
+    <div class="hero-particles position-absolute w-100 h-100 top-0 start-0"></div>
+
+    <div class="container pt-5 position-relative" style="z-index: 2;">
+        <div class="row g-5 pt-5 align-items-center min-vh-75">
+            <div class="col-lg-6 text-center text-lg-start mb-lg-5">
+
+                <div class="d-inline-flex align-items-center btn btn-sm border rounded-pill text-white px-4 py-2 mb-4 animated slideInRight hero-badge">
+                    <i class="fas fa-bolt me-2"></i>
+                    <span class="fw-semibold">AI.Tech</span>
+                    <span class="ms-2 badge bg-white text-primary rounded-pill px-2 py-1" style="font-size: 0.7rem;">YENİ</span>
+                </div>
+
+
+                <h1 class="display-3 text-white mb-4 animated slideInRight fw-bold hero-title" style="line-height: 1.2;">
+                    @Model.Title
+                </h1>
+
+
+                <p class="text-white mb-4 animated slideInRight fs-5 opacity-90 hero-description" style="line-height: 1.8;">
+                    @Model.Description
                 </p>
-                <a href="" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInRight">Read More</a>
-                <a href="" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">Contact Us</a>
+
+
+                <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start animated slideInRight">
+                    <a href="#services" class="btn btn-light btn-lg rounded-pill px-5 py-3 fw-semibold shadow-lg hero-btn-primary">
+                        <i class="fas fa-rocket me-2"></i>
+                        Hemen Başla
+                    </a>
+                    <a href="#contact" class="btn btn-outline-light btn-lg rounded-pill px-5 py-3 fw-semibold hero-btn-secondary">
+                        <i class="fas fa-phone-alt me-2"></i>
+                        İletişime Geç
+                    </a>
+                </div>
+
+
+                <div class="row g-4 mt-4 animated slideInRight">
+                    <div class="col-4">
+                        <div class="text-center">
+                            <h3 class="text-white mb-1 fw-bold counter" data-target="500">0</h3>
+                            <p class="text-white-50 mb-0 small">Mutlu Müşteri</p>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="text-center">
+                            <h3 class="text-white mb-1 fw-bold counter" data-target="1200">0</h3>
+                            <p class="text-white-50 mb-0 small">Proje Tamamlandı</p>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="text-center">
+                            <h3 class="text-white mb-1 fw-bold">4.9★</h3>
+                            <p class="text-white-50 mb-0 small">Müşteri Puanı</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-6 align-self-end text-center text-lg-end">
-                <img class="img-fluid" src="~/WEBUI/img/hero-img.png" alt="">
+
+
+            <div class="col-lg-6 text-center text-lg-end animated slideInRight">
+                <div class="hero-image-wrapper position-relative d-inline-block">
+
+                    <div class="hero-ring hero-ring-1"></div>
+                    <div class="hero-ring hero-ring-2"></div>
+
+
+                    <img class="img-fluid hero-image"
+                         src="@Url.Content(Model.ImageUrl)"
+                         alt="@Model.Title">
+
+
+                    <div class="floating-card floating-card-1">
+                        <i class="fas fa-check-circle text-success fa-2x mb-2"></i>
+                        <p class="mb-0 fw-bold">%100 Güvenli</p>
+                    </div>
+                    <div class="floating-card floating-card-2">
+                        <i class="fas fa-bolt text-warning fa-2x mb-2"></i>
+                        <p class="mb-0 fw-bold">Hızlı Teslimat</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+
+    <div class="hero-wave position-absolute bottom-0 start-0 w-100">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-100" style="height: 120px;">
+            <path d="M0,0 C150,100 350,0 600,50 C850,100 1050,50 1200,80 L1200,120 L0,120 Z"
+                  fill="#ffffff" opacity="0.1"></path>
+            <path d="M0,20 C200,80 400,20 600,60 C800,100 1000,40 1200,70 L1200,120 L0,120 Z"
+                  fill="#ffffff" opacity="0.05"></path>
+        </svg>
+    </div>
 </div>
+
+<style>
+    .hero-header {
+        background: linear-gradient(135deg, #0056b3 0%, #003d82 50%, #002855 100%);
+        min-height: 100vh;
+        position: relative;
+    }
+
+    .min-vh-75 {
+        min-height: 75vh;
+    }
+
+    .hero-bg-shapes .shape {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.1;
+        animation: float 20s infinite ease-in-out;
+    }
+
+    .shape-1 {
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+        top: -100px;
+        right: 10%;
+        animation-delay: 0s;
+    }
+
+    .shape-2 {
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+        bottom: 20%;
+        left: 5%;
+        animation-delay: 5s;
+    }
+
+    .shape-3 {
+        width: 150px;
+        height: 150px;
+        background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+        top: 40%;
+        right: 20%;
+        animation-delay: 10s;
+    }
+
+    .shape-4 {
+        width: 250px;
+        height: 250px;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        bottom: -50px;
+        right: -50px;
+        animation-delay: 15s;
+    }
+ .float {
+        0%, 100% {
+            transform: translate(0, 0) scale(1);
+        }
+
+        25% {
+            transform: translate(20px, -20px) scale(1.1);
+        }
+
+        50% {
+            transform: translate(-15px, 15px) scale(0.9);
+        }
+
+        75% {
+            transform: translate(15px, 10px) scale(1.05);
+        }
+    }
+
+
+    .hero-badge {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        transition: all 0.3s ease;
+    }
+
+        .hero-badge:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+
+    .hero-title {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+
+    .hero-btn-primary {
+        background: #ffffff;
+        color: var(--bs-primary);
+        border: none;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .hero-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            background: #f8f9fa;
+        }
+
+        .hero-btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(0, 86, 179, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .hero-btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+    .hero-btn-secondary {
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+
+        .hero-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+
+    .hero-image-wrapper {
+        animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-image {
+        max-width: 100%;
+        height: auto;
+        filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3));
+        animation: levitate 3s ease-in-out infinite;
+        position: relative;
+        z-index: 2;
+    }
+ .levitate {
+        0%, 100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+
+
+    .hero-ring {
+        position: absolute;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+    .hero-ring-1 {
+        width: 120%;
+        height: 120%;
+        top: -10%;
+        left: -10%;
+        animation: pulse-ring 3s ease-in-out infinite;
+    }
+
+    .hero-ring-2 {
+        width: 140%;
+        height: 140%;
+        top: -20%;
+        left: -20%;
+        animation: pulse-ring 3s ease-in-out infinite 1.5s;
+    }
+
+pulse-ring {
+        0%, 100% {
+            transform: scale(1);
+            opacity: 0.3;
+        }
+
+        50% {
+            transform: scale(1.05);
+            opacity: 0.1;
+        }
+    }
+
+
+    .floating-card {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 15px 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        z-index: 3;
+        animation: float-card 3s ease-in-out infinite;
+    }
+
+    .floating-card-1 {
+        top: 10%;
+        right: -10%;
+        animation-delay: 0s;
+    }
+
+    .floating-card-2 {
+        bottom: 15%;
+        left: -10%;
+        animation-delay: 1.5s;
+    }
+
+ float-card {
+        0%, 100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-15px);
+        }
+    }
+
+
+    .counter {
+        font-size: 2rem;
+    }
+
+
+{
+        .hero-header {
+            min-height: auto;
+            padding-bottom: 3rem;
+        }
+
+        .hero-title {
+            font-size: 2.5rem !important;
+        }
+
+        .floating-card {
+            display: none;
+        }
+
+        .hero-ring {
+            display: none;
+        }
+
+        .min-vh-75 {
+            min-height: auto;
+        }
+    }
+
+{
+        .hero-title {
+            font-size: 2rem !important;
+        }
+
+        .hero-btn-primary,
+        .hero-btn-secondary {
+            padding: 0.75rem 2rem !important;
+            font-size: 0.9rem;
+        }
+    }
+</style>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const counters = document.querySelectorAll('.counter');
+
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            if (!target) return;
+
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    counter.textContent = Math.floor(current) + '+';
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.textContent = target + '+';
+                }
+            };
+
+
+            setTimeout(updateCounter, 500);
+        });
+    });
+</script>

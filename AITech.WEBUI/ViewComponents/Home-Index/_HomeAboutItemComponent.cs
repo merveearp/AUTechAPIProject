@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AITech.WEBUI.Services.AboutItemServices;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AITech.WEBUI.ViewComponents.Home_Index
 {
-    public class _HomeAboutItemComponent :ViewComponent
+    public class _HomeAboutItemComponent(IAboutItemService _aboutItemService) :ViewComponent
     {
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View();
+            var entities = await _aboutItemService.GetAllAsync();
+            return View(entities);
         }
     }
 }
