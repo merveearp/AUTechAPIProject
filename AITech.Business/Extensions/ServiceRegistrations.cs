@@ -10,6 +10,7 @@ using AITech.Business.Services.ProjectServices;
 using AITech.Business.Services.SocialServices;
 using AITech.Business.Services.TeamWorkerServices;
 using AITech.Business.Services.TestimonialServices;
+using AITech.Business.Services.UserServices;
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -33,6 +34,7 @@ namespace AITech.Business.Extensions
             services.AddScoped<IFeatureService, FeatureService>();
             services.AddScoped<ITeamWorkerService, TeamWorkerService>();
             services.AddScoped<IAboutService, AboutService>();
+            services.AddScoped<IUserService, UserService>();
         }
 
     }

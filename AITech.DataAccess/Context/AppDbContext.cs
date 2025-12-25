@@ -1,4 +1,5 @@
 ﻿using AITech.Entity.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AITech.DataAccess.Context
 {
-    public class AppDbContext :DbContext
+    public class AppDbContext :IdentityDbContext<AppUser,AppRole,int>
     {
         public AppDbContext(DbContextOptions options) : base(options)
         {
