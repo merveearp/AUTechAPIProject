@@ -1,5 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Index";
+﻿@model List<ResultUserMessageDto>
+@{
+    ViewData["Title"] = "Dashboard";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,259 +10,572 @@
     </a>
 </header>
 
-<div class="page-heading">
-    <h3>Profile Statistics</h3>
+<div class="page-heading mb-4">
+    <h3>Yönetim Paneli</h3>
 </div>
 
-<div class="page-content">
-    <section class="row">
-        <div class="col-12 col-lg-9">
-            <div class="row">
-                <div class="col-6 col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-3 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="stats-icon purple">
-                                        <i class="iconly-boldShow"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Profile Views</h6>
-                                    <h6 class="font-extrabold mb-0">112.000</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-3 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="stats-icon blue">
-                                        <i class="iconly-boldProfile"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Followers</h6>
-                                    <h6 class="font-extrabold mb-0">183.000</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-3 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="stats-icon green">
-                                        <i class="iconly-boldAdd-User"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Following</h6>
-                                    <h6 class="font-extrabold mb-0">80.000</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-3 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="stats-icon red">
-                                        <i class="iconly-boldBookmark"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Saved Post</h6>
-                                    <h6 class="font-extrabold mb-0">112</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="col-12 col-lg-3">
+    <div class="profile-card">
+        <div class="profile-avatar">
+            <img src="~/ADMIN/dist/assets/images/faces/1.jpg" alt="Profil">
+        </div>
+        <div class="profile-info">
+            <h5 class="profile-name">John Duck</h5>
+            <p class="profile-role">Yönetici</p>
+        </div>
+        <div class="profile-stats">
+            <div class="profile-stat-item">
+                <span class="profile-stat-value">@Model.Count</span>
+                <span class="profile-stat-label">Mesaj</span>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Profile Visit</h4>
-                        </div>
-                        <div class="card-body">
-                            <div id="chart-profile-visit"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-xl-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Profile Visit</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="d-flex align-items-center">
-                                        <svg class="bi text-primary" width="32" height="32" fill="blue" style="width:10px">
-                                            <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                        </svg>
-                                        <h5 class="mb-0 ms-3">Europe</h5>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <h5 class="mb-0">862</h5>
-                                </div>
-                                <div class="col-12">
-                                    <div id="chart-europe"></div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="d-flex align-items-center">
-                                        <svg class="bi text-success" width="32" height="32" fill="blue" style="width:10px">
-                                            <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                        </svg>
-                                        <h5 class="mb-0 ms-3">America</h5>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <h5 class="mb-0">375</h5>
-                                </div>
-                                <div class="col-12">
-                                    <div id="chart-america"></div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="d-flex align-items-center">
-                                        <svg class="bi text-danger" width="32" height="32" fill="blue" style="width:10px">
-                                            <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                        </svg>
-                                        <h5 class="mb-0 ms-3">Indonesia</h5>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <h5 class="mb-0">1025</h5>
-                                </div>
-                                <div class="col-12">
-                                    <div id="chart-indonesia"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-xl-8">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Latest Comments</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-hover table-lg">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Comment</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="col-3">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar avatar-md">
-                                                        <img src="~/ADMIN/dist/assets/images/faces/5.jpg">
-                                                    </div>
-                                                    <p class="font-bold ms-3 mb-0">Si Cantik</p>
-                                                </div>
-                                            </td>
-                                            <td class="col-auto">
-                                                <p class=" mb-0">Congratulations on your graduation!</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="col-3">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar avatar-md">
-                                                        <img src="~/ADMIN/dist/assets/images/faces/2.jpg">
-                                                    </div>
-                                                    <p class="font-bold ms-3 mb-0">Si Ganteng</p>
-                                                </div>
-                                            </td>
-                                            <td class="col-auto">
-                                                <p class=" mb-0">
-                                                    Wow amazing design! Can you make another
-                                                    tutorial for
-                                                    this design?
-                                                </p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="profile-stat-item">
+                <span class="profile-stat-value">@Model.Count(x => !x.IsCalled)</span>
+                <span class="profile-stat-label">Bekleyen</span>
             </div>
         </div>
-        <div class="col-12 col-lg-3">
-            <div class="card">
-                <div class="card-body py-4 px-5">
-                    <div class="d-flex align-items-center">
-                        <div class="avatar avatar-xl">
-                            <img src="~/ADMIN/dist/assets/images/faces/1.jpg" alt="Face 1">
-                        </div>
-                        <div class="ms-3 name">
-                            <h5 class="font-bold">John Duck</h5>
-                            <h6 class="text-muted mb-0"></h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h4>Recent Messages</h4>
-                </div>
-                <div class="card-content pb-4">
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="~/ADMIN/dist/assets/images/faces/4.jpg">
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">Hank Schrader</h5>
-                            <h6 class="text-muted mb-0"></h6>
-                        </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="~/ADMIN/dist/assets/images/faces/5.jpg">
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">Dean Winchester</h5>
-                            <h6 class="text-muted mb-0"></h6>
-                        </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="~/ADMIN/dist/assets/images/faces/1.jpg">
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">John Dodol</h5>
-                            <h6 class="text-muted mb-0"></h6>
-                        </div>
-                    </div>
-                    <div class="px-4">
-                        <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>
-                            Start Conversation
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
 </div>
+
+
+<div class="container-fluid px-3">
+    <div class="row">
+        <div class="col-12">
+
+            <div class="card shadow border-0">
+              
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center flex-wrap gap-3">
+                    <div class="d-flex align-items-center gap-3">
+                        <i class="bi bi-chat-dots-fill fs-3"></i>
+                        <div>
+                            <h5 class="mb-0">Kullanıcı Mesajları</h5>
+                            <small>Gelen mesajları yönetin</small>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <span class="badge bg-warning text-dark px-3 py-2">
+                            Bekleyen: @Model.Count(x => !x.IsCalled)
+                        </span>
+                        <span class="badge bg-success px-3 py-2">
+                            Tamamlanan: @Model.Count(x => x.IsCalled)
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0 w-100">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Ad Soyad</th>
+                                    <th>İletişim</th>
+                                    <th>Mesaj</th>
+                                    <th>Durum</th>
+                                    <th>Mesaj Tarihi</th>
+                                    <th>Geri Dönüş</th>
+                                    <th class="text-center">İşlem</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="fw-semibold">
+                                            @item.FullName
+                                        </td>
+
+                                        <td>
+                                            <div class="small">@item.Email</div>
+                                            <div class="small text-muted">@item.Phone</div>
+                                        </td>
+
+                                        <td style="max-width:500px; white-space:normal;">
+                                            @item.Message
+                                        </td>
+
+                                        <td>
+                                            @if (item.IsCalled)
+                                            {
+                                                <span class="badge bg-success">Görüşme Yapıldı</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-warning text-dark">Beklemede</span>
+                                            }
+                                    </td>
+
+                                    <td>
+                                        @item.CreatedDate.ToString("dd.MM.yyyy HH:mm")
+                                    </td>
+
+                                    <td>
+                                        @(item.UpdatedDate != null
+                                                                                ? item.UpdatedDate.Value.ToString("dd.MM.yyyy HH:mm")
+                                                                                : "-")
+                                        </td>
+
+                                        <td class="text-center">
+                                            @if (!item.IsCalled)
+                                            {
+                                                <form asp-action="Update" method="post" class="d-inline">
+                                                    <input type="hidden" name="Id" value="@item.Id" />
+                                                    <input type="hidden" name="IsCalled" value="true" />
+                                                    <button class="btn btn-sm btn-success">
+                                                        Geri Dönüş Yap
+                                                    </button>
+                                                </form>
+                                            }
+                                            <button type="button"
+                                                    class="btn btn-sm btn-outline-primary ms-1"
+                                                    onclick="openMessageDetail(@item.Id)">
+                                                Detay
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div id="modalContainer"></div>
+
+<script>
+    function openMessageDetail(id) {
+        fetch(`/Admin/Home/GetMessageDetail?id=${id}`)
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("modalContainer").innerHTML = html;
+                new bootstrap.Modal(
+                    document.getElementById("messageDetailModal")
+                ).show();
+            });
+    }
+</script>
+
+
+<style>
+    /* Stats Cards */
+    .stat-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.3s ease;
+        margin-bottom: 1rem;
+    }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+        }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+        flex-shrink: 0;
+    }
+
+    .stat-purple .stat-icon {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .stat-blue .stat-icon {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .stat-green .stat-icon {
+        background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    }
+
+    .stat-red .stat-icon {
+        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    }
+
+    .stat-content {
+        flex: 1;
+    }
+
+    .stat-label {
+        font-size: 0.875rem;
+        color: #6c757d;
+        margin-bottom: 0.25rem;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #212529;
+        margin: 0;
+    }
+
+    /* Chart Card */
+    .chart-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+    }
+
+    .chart-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+        .chart-header h4 {
+            margin: 0;
+            color: #495057;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+    .chart-body {
+        padding: 1.5rem;
+    }
+
+    
+    .messages-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+    }
+
+    .messages-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .header-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.75rem;
+        color: white;
+    }
+
+    .header-title {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    .header-subtitle {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.9rem;
+    }
+
+    .header-stats {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .stat-box {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 100px;
+    }
+
+        .stat-box .stat-value {
+            color: white;
+            font-size: 1.75rem;
+        }
+
+        .stat-box .stat-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.85rem;
+        }
+
+    /* Table */
+    .messages-body {
+        padding: 0;
+    }
+
+    .messages-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .messages-table thead {
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+            .messages-table thead th {
+                padding: 1.25rem 1rem;
+                text-align: left;
+                font-size: 0.875rem;
+                font-weight: 600;
+                color: #495057;
+                white-space: nowrap;
+            }
+
+                .messages-table thead th i {
+                    color: #667eea;
+                }
+
+    .message-row {
+        border-bottom: 1px solid #f1f3f5;
+        transition: all 0.3s ease;
+    }
+
+        .message-row:hover {
+            background: #f8f9fa;
+        }
+
+        .message-row.pending {
+            border-left: 4px solid #ffc107;
+        }
+
+        .message-row.completed {
+            border-left: 4px solid #28a745;
+        }
+
+    .messages-table tbody td {
+        padding: 1.25rem 1rem;
+        vertical-align: middle;
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+    }
+
+    .user-name {
+        font-weight: 600;
+        color: #212529;
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .contact-icon {
+        color: #667eea;
+        font-size: 0.875rem;
+    }
+
+    .contact-link {
+        color: #495057;
+        text-decoration: none;
+        font-size: 0.875rem;
+    }
+
+        .contact-link:hover {
+            color: #667eea;
+        }
+
+    .message-preview {
+        max-width: 280px;
+    }
+
+    .message-text {
+        color: #6c757d;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .read-more {
+        background: none;
+        border: none;
+        color: #667eea;
+        font-size: 0.8rem;
+        padding: 0;
+        margin-top: 0.25rem;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+        .read-more:hover {
+            color: #764ba2;
+        }
+
+    .btn-status {
+        padding: 0.5rem 1.25rem;
+        border-radius: 20px;
+        border: none;
+        font-size: 0.875rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+
+    .btn-pending {
+        background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+        color: white;
+        box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
+    }
+
+        .btn-pending:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+        }
+
+    .status-completed {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem 1.25rem;
+        background: #d4edda;
+        color: #155724;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+    .date-info {
+        display: flex;
+        align-items: start;
+        gap: 0.5rem;
+        color: #495057;
+        font-size: 0.9rem;
+    }
+
+        .date-info i {
+            color: #667eea;
+            margin-top: 2px;
+        }
+
+    .btn-detail {
+        padding: 0.5rem 1rem;
+        background: white;
+        border: 2px solid #667eea;
+        color: #667eea;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+        .btn-detail:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+    /* Profile Card */
+    .profile-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        text-align: center;
+    }
+
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1rem;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid #667eea;
+    }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    .profile-name {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #212529;
+        margin-bottom: 0.25rem;
+    }
+
+    .profile-role {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .profile-stats {
+        display: flex;
+        justify-content: space-around;
+        padding-top: 1.5rem;
+        border-top: 1px solid #e9ecef;
+    }
+
+    .profile-stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-stat-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #667eea;
+    }
+
+    .profile-stat-label {
+        font-size: 0.875rem;
+        color: #6c757d;
+        margin-top: 0.25rem;
+    }
+</style>

@@ -1,0 +1,54 @@
+﻿@model AITech.WEBUI.DTOs.UserMessageDtos.ResultUserMessageDto
+
+<div class="modal fade" id="messageDetailModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Kullanıcı Mesaj Detayı</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="mb-2">
+                    <strong>Ad Soyad:</strong>
+                    <div>@Model.FullName</div>
+                </div>
+
+                <div class="mb-2">
+                    <strong>E-posta:</strong>
+                    <div>@Model.Email</div>
+                </div>
+
+                <div class="mb-2">
+                    <strong>Telefon:</strong>
+                    <div>@Model.Phone</div>
+                </div>
+
+                <div class="mb-3">
+                    <strong>Mesaj:</strong>
+                    <div class="border rounded p-3 bg-light">
+                        @Model.Message
+                    </div>
+                </div>
+
+                <div class="text-muted small">
+                    Mesaj Tarihi:
+                    @Model.CreatedDate.ToString("dd.MM.yyyy HH:mm")
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary rounded-pill"
+                        data-bs-dismiss="modal">
+                    Kapat
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

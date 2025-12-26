@@ -16,7 +16,6 @@ namespace AITech.Business.Services.TeamWorkerServices
     {
         public async Task TCreateAsync(CreateTeamWorkerDto createTeam)
         {
-
             var value = createTeam.Adapt<TeamWorker>();
             await _teamWorkerRepository.CreateAsync(value);
             await _unitOfWork.SaveChangesAsync();

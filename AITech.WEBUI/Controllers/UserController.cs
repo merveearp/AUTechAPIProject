@@ -37,6 +37,7 @@ namespace AITech.WEBUI.Controllers
             }
         }
 
+
         [HttpGet]
         public IActionResult Login()
         {

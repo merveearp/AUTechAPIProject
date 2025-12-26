@@ -30,5 +30,7 @@ namespace AITech.DataAccess.Context
         public DbSet<Social> Socials { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<TeamWorker> TeamWorkers { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<UserMessage> UserMessages { get; set; }
     }
 }

@@ -1,0 +1,494 @@
+﻿@model ResultContactDto
+@{
+    ViewData["Title"] = "İletişim Bilgileri Yönetimi";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-4 py-4">
+   
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="page-header-card">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div class="header-content">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="header-icon">
+                                <i class="bi bi-telephone-fill"></i>
+                            </div>
+                            <h2 class="mb-0 ms-3">İletişim Bilgileri Yönetimi</h2>
+                        </div>
+                        <p class="text-muted mb-0 ms-5 ps-2">
+                            Web sitesinde yer alan iletişim bilgilerini buradan yönetin ve güncelleyin.
+                        </p>
+                    </div>
+                    <div class="header-actions">
+                        @if (Model == null)
+                        {
+                            <a href="/Admin/Contact/Create" class="btn btn-outline-primary">
+                                <i class="bi bi-plus-circle"></i>
+                                Ekle
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="/Admin/Contact/Update" class="btn btn-outline-primary">
+                                <i class="bi bi-pencil-square"></i>
+                                Düzenle
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="row g-4">
+       
+        <div class="col-lg-8">
+            <div class="info-card">
+                <div class="card-header-custom">
+                    <h5 class="mb-0">
+                        <i class="bi bi-info-circle me-2"></i>
+                        İletişim Detayları
+                    </h5>
+                    @if (Model != null)
+                    {
+                        <span class="status-badge status-active">
+                            <i class="bi bi-check-circle-fill me-1"></i>
+                            Aktif
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="status-badge status-inactive">
+                            <i class="bi bi-exclamation-circle-fill me-1"></i>
+                            Henüz Eklenmedi
+                        </span>
+                    }
+                </div>
+
+                <div class="card-body-custom">
+                    @if (Model != null)
+                    {
+                        <!-- Email Field -->
+                        <div class="info-field">
+                            <label class="info-label">
+                                <i class="bi bi-envelope-fill label-icon"></i>
+                                E-posta Adresi
+                            </label>
+                            <div class="info-value-wrapper">
+                                <input type="email"
+                                       class="form-control-custom"
+                                       value="@Model.Email"
+                                       disabled />
+                                <a href="mailto:@Model.Email" class="field-action" title="E-posta Gönder">
+                                    <i class="bi bi-send"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                       
+                        <div class="info-field">
+                            <label class="info-label">
+                                <i class="bi bi-telephone-fill label-icon"></i>
+                                Telefon Numarası
+                            </label>
+                            <div class="info-value-wrapper">
+                                <input type="text"
+                                       class="form-control-custom"
+                                       value="@Model.Phone"
+                                       disabled />
+                                <a href="tel:@Model.Phone" class="field-action" title="Ara">
+                                    <i class="bi bi-phone"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                       
+                        <div class="info-field mb-0">
+                            <label class="info-label">
+                                <i class="bi bi-geo-alt-fill label-icon"></i>
+                                Adres Bilgisi
+                            </label>
+                            <div class="info-value-wrapper">
+                                <textarea class="form-control-custom"
+                                      rows="4"
+                                      disabled>@Model.Adress</textarea>
+                                <a href="#" class="field-action" title="Haritada Göster">
+                                    <i class="bi bi-map"></i>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="empty-state">
+                            <div class="empty-icon">
+                                <i class="bi bi-inbox"></i>
+                            </div>
+                            <h5 class="empty-title">Henüz İletişim Bilgisi Yok</h5>
+                            <p class="empty-text">
+                                İletişim bilgileri eklemek için yukarıdaki "Yeni Ekle" butonuna tıklayın.
+                            </p>
+                            <a href="/Admin/Contact/Create" class="btn btn-primary mt-3">
+                                <i class="bi bi-plus-circle me-2"></i>
+                                İletişim Bilgisi Ekle
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+       
+        <div class="col-lg-4">
+            
+            <div class="info-card mb-4">
+                <div class="card-header-custom">
+                    <h5 class="mb-0">
+                        <i class="bi bi-lightbulb me-2"></i>
+                        Bilgi
+                    </h5>
+                </div>
+                <div class="card-body-custom">
+                    <div class="info-tip">
+                        <i class="bi bi-info-circle-fill tip-icon"></i>
+                        <div>
+                            <strong>Kullanım Alanları</strong>
+                            <p class="mb-0 mt-1">Bu bilgiler web sitesinin footer, iletişim sayfası ve diğer alanlarda görüntülenir.</p>
+                        </div>
+                    </div>
+                    <div class="info-tip">
+                        <i class="bi bi-shield-check tip-icon"></i>
+                        <div>
+                            <strong>Güvenlik</strong>
+                            <p class="mb-0 mt-1">İletişim bilgilerinizi güncel tutmayı unutmayın.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+            @if (Model != null)
+            {
+                <div class="info-card">
+                    <div class="card-header-custom">
+                        <h5 class="mb-0">
+                            <i class="bi bi-bar-chart me-2"></i>
+                            İstatistikler
+                        </h5>
+                    </div>
+                    <div class="card-body-custom">
+                        <div class="stat-item">
+                            <div class="stat-label">Durum</div>
+                            <div class="stat-value text-success">Aktif</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">E-posta</div>
+                            <div class="stat-value">@(string.IsNullOrEmpty(Model.Email) ? "Yok" : "Var")</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Telefon</div>
+                            <div class="stat-value">@(string.IsNullOrEmpty(Model.Phone) ? "Yok" : "Var")</div>
+                        </div>
+                        <div class="stat-item mb-0">
+                            <div class="stat-label">Adres</div>
+                            <div class="stat-value">@(string.IsNullOrEmpty(Model.Adress) ? "Yok" : "Var")</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Page Header Card */
+    .page-header-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 16px;
+        padding: 2rem;
+        color: white;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+    }
+
+    .header-icon {
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+
+    .header-content h2 {
+        color: white;
+        font-weight: 700;
+        font-size: 1.75rem;
+    }
+
+    .header-content p {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.95rem;
+    }
+
+    /* Info Card */
+    .info-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+        .info-card:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+        }
+
+    .card-header-custom {
+        padding: 1.5rem;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-bottom: 1px solid #dee2e6;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        .card-header-custom h5 {
+            color: #495057;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+    .card-body-custom {
+        padding: 2rem;
+    }
+
+    /* Status Badge */
+    .status-badge {
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .status-active {
+        background: #d4edda;
+        color: #155724;
+    }
+
+    .status-inactive {
+        background: #fff3cd;
+        color: #856404;
+    }
+
+    /* Info Field */
+    .info-field {
+        margin-bottom: 1.5rem;
+    }
+
+    .info-label {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        color: #495057;
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+    }
+
+    .label-icon {
+        color: #667eea;
+        margin-right: 0.5rem;
+        font-size: 1.1rem;
+    }
+
+    .info-value-wrapper {
+        position: relative;
+        display: flex;
+        align-items: start;
+        gap: 0.75rem;
+    }
+
+    .form-control-custom {
+        flex: 1;
+        padding: 0.875rem 1.125rem;
+        border: 2px solid #e9ecef;
+        border-radius: 12px;
+        background: #f8f9fa;
+        color: #495057;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+    }
+
+        .form-control-custom:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+    textarea.form-control-custom {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    .field-action {
+        width: 44px;
+        height: 44px;
+        background: #667eea;
+        color: white;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+    }
+
+        .field-action:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+    /* Button Action */
+    .btn-action {
+        padding: 0.75rem 1.5rem;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+    }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+        }
+
+    /* Empty State */
+    .empty-state {
+        text-align: center;
+        padding: 3rem 1rem;
+    }
+
+    .empty-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 2rem;
+        color: #adb5bd;
+    }
+
+    .empty-title {
+        color: #495057;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .empty-text {
+        color: #6c757d;
+        margin-bottom: 0;
+    }
+
+    /* Info Tips */
+    .info-tip {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 12px;
+        margin-bottom: 1rem;
+    }
+
+        .info-tip:last-child {
+            margin-bottom: 0;
+        }
+
+    .tip-icon {
+        color: #667eea;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+    }
+
+    .info-tip strong {
+        color: #495057;
+        display: block;
+        font-size: 0.95rem;
+    }
+
+    .info-tip p {
+        color: #6c757d;
+        font-size: 0.875rem;
+        line-height: 1.5;
+    }
+
+    /* Stats */
+    .stat-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid #f8f9fa;
+        margin-bottom: 0.75rem;
+    }
+
+        .stat-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+    .stat-label {
+        color: #6c757d;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .stat-value {
+        color: #495057;
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+
+    /* Responsive */
+ (max-width: 991px) {
+        .page-header-card {
+            padding: 1.5rem;
+        }
+
+        .header-content h2 {
+            font-size: 1.5rem;
+        }
+
+        .header-actions {
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .btn-action {
+            width: 100%;
+        }
+    }
+
+(max-width: 576px) {
+        .card-body-custom {
+            padding: 1.5rem;
+        }
+
+        .field-action {
+            width: 40px;
+            height: 40px;
+        }
+    }
+</style>

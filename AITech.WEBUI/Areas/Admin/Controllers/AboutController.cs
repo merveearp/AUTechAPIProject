@@ -39,7 +39,7 @@ namespace AITech.WEBUI.Areas.Admin.Controllers
             if (value == null)
                 return View(new UpdateAboutDto());
 
-            return View(new UpdateChooseDto
+            return View(new UpdateAboutDto
             {
                 Id = value.Id,
                 Title = value.Title,

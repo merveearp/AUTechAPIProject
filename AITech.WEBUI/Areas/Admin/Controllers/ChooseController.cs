@@ -10,7 +10,7 @@ namespace AITech.WEBUI.Areas.Admin.Controllers
 
     public class ChooseController(IChooseService _chooseService) : Controller
     {
-        [HttpGet]
+       
         public async Task<IActionResult> Index()
         {
             var entities = await _chooseService.GetAsync();

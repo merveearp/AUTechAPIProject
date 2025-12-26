@@ -4,12 +4,14 @@ using AITech.WEBUI.Services.BannerServices;
 using AITech.WEBUI.Services.CategoryServices;
 using AITech.WEBUI.Services.ChooseItemServices;
 using AITech.WEBUI.Services.ChooseServices;
+using AITech.WEBUI.Services.ContactServices;
 using AITech.WEBUI.Services.FAOServices;
 using AITech.WEBUI.Services.FeatureServices;
 using AITech.WEBUI.Services.ProjectService;
 using AITech.WEBUI.Services.SocialServices;
 using AITech.WEBUI.Services.TeamWorkerServices;
 using AITech.WEBUI.Services.TestimonialServices;
+using AITech.WEBUI.Services.UserMessageServices;
 using AITech.WEBUI.Services.UserServices;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -34,6 +36,8 @@ namespace AITech.WEBUI.Extensions
             services.AddScoped<ITeamWorkerService , TeamWorkerService>();
             services.AddScoped<ITestimonialService , TestimonialService>();
             services.AddScoped<IUserService , UserService>();
+            services.AddScoped<IContactService , ContactService>();
+            services.AddScoped<IUserMessageService , UserMessageService>();
 
             services.AddFluentValidationAutoValidation()
                     .AddFluentValidationClientsideAdapters()

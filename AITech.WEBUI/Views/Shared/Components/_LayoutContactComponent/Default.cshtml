@@ -1,0 +1,21 @@
+﻿@using AITech.WEBUI.DTOs.ContactDtos
+@model ResultContactDto
+@*
+    _LayoutContactComponent
+*@
+
+
+<div class="d-flex flex-column gap-3">
+    <p class="mb-0">
+        <i class="fa fa-map-marker-alt me-3 text-primary"></i>
+        @Model.Adress
+    </p>
+    <p class="mb-0">
+        <i class="fa fa-phone-alt me-3 text-primary"></i>
+        @Model.Phone
+    </p>
+    <p class="mb-0">
+        <i class="fa fa-envelope me-3 text-primary"></i>
+        @Model.Email
+    </p>
+</div>

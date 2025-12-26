@@ -2,7 +2,7 @@
 
 namespace AITech.WEBUI.ViewComponents.Home_Index
 {
-    public class _HomeAIComponent :ViewComponent
+    public class _HomeUserMessageComponent :ViewComponent
     {
         public async Task<IViewComponentResult> InvokeAsync()
         {

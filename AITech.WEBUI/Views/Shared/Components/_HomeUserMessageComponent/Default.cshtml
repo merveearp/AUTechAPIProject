@@ -1,0 +1,118 @@
+﻿@model AITech.WEBUI.DTOs.UserMessageDtos.CreateUserMessageDto
+@*
+    HomeAIComponent
+*@
+
+@{
+    var successMessage = TempData["UserMessageSuccess"];
+    var errorMessage = TempData["UserMessageError"];
+}
+
+<div id="contact" class="container-fluid bg-primary py-5">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+
+            <!-- SOL GÖRSEL -->
+            <div class="col-md-5 text-start wow fadeIn" data-wow-delay="0.3s">
+                <img class="img-fluid" src="~/WEBUI/img/newsletter.png" alt="Bize Ulaşın">
+            </div>
+
+            <!-- FORM -->
+            <div class="col-md-7 wow fadeIn" data-wow-delay="0.5s">
+
+                <div class="btn btn-sm border rounded-pill text-white px-3 mb-3">
+                    Bize Mesaj Bırakın
+                </div>
+
+                <h1 class="text-white mb-4">
+                    Projeniz İçin Sizi Arayalım
+                </h1>
+
+                <p class="text-white-50 mb-4">
+                    İhtiyacınızı kısaca paylaşın, uzman ekibimiz en kısa sürede sizinle iletişime geçsin.
+                </p>
+
+                <form asp-controller="Home"
+                      asp-action="CreateMessage"
+                      method="post"
+                      class="row g-3">
+
+                    <div class="col-md-6">
+                        <input asp-for="FullName"
+                               class="form-control border-0 rounded-pill ps-4"
+                               placeholder="Ad Soyad"
+                               style="height:48px;">
+                    </div>
+
+                    <div class="col-md-6">
+                        <input asp-for="Phone"
+                               class="form-control border-0 rounded-pill ps-4"
+                               placeholder="Telefon Numarası"
+                               style="height:48px;">
+                    </div>
+
+                    <div class="col-12">
+                        <input asp-for="Email"
+                               type="email"
+                               class="form-control border-0 rounded-pill ps-4"
+                               placeholder="E-posta "
+                               style="height:48px;">
+                    </div>
+
+                    <div class="col-12">
+                        <textarea asp-for="Message"
+                                  class="form-control border-0 rounded-4 ps-4 pt-3"
+                                  rows="3"
+                                  placeholder="Kısaca ihtiyacınızı anlatın..."></textarea>
+                    </div>
+
+                    <div class="col-12">
+                        <button type="submit"
+                                class="btn btn-light rounded-pill px-5 py-2 fw-semibold">
+                            Gönder
+                        </button>
+                    </div>
+
+                </form>
+
+                <small class="text-white-50 d-block mt-3">
+                    Mesajınız gizli tutulur, üçüncü kişilerle paylaşılmaz.
+                </small>
+            </div>
+
+        </div>
+    </div>
+</div>
+@if (successMessage != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                toast: true,
+                position: 'top-end',   
+                icon: 'success',
+                title: '@Html.Raw(successMessage)',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+            });
+        });
+    </script>
+}
+
+@if (errorMessage != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                toast: true,
+                position: 'top-end',   
+                icon: 'error',
+                title: '@Html.Raw(errorMessage)',
+                showConfirmButton: false,
+                timer: 4000,
+                timerProgressBar: true
+            });
+        });
+    </script>
+}

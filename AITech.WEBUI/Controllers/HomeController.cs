@@ -1,5 +1,7 @@
+using AITech.WEBUI.DTOs.UserMessageDtos;
 using AITech.WEBUI.Models;
 using AITech.WEBUI.Services.ProjectService;
+using AITech.WEBUI.Services.UserMessageServices;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -9,10 +11,12 @@ namespace AITech.WEBUI.Controllers
     public class HomeController : Controller
     {
         private readonly IProjectService _projectService;
+        private readonly IUserMessageService _userMessageService;
 
-        public HomeController(IProjectService projectService)
+        public HomeController(IProjectService projectService, IUserMessageService userMessageService)
         {
             _projectService = projectService;
+            _userMessageService = userMessageService;
         }
 
         public IActionResult Index()
@@ -34,5 +38,31 @@ namespace AITech.WEBUI.Controllers
             });
 
         }
+
+        [HttpGet]
+        public async Task<IActionResult> CreateMessage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateMessage(CreateUserMessageDto createDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["UserMessageError"] =
+                    "Lütfen zorunlu alanlarý doldurunuz.";
+                return RedirectToAction("Index", "Home");
+            }
+
+            await _userMessageService.CreateAsync(createDto);
+
+            TempData["UserMessageSuccess"] =
+                "Mesajýnýz alýnmýþtýr. En kýsa sürede sizinle iletiþime geçilecektir.";
+
+            return RedirectToAction("Index", "Home");
+        }
+
+
     }
 }

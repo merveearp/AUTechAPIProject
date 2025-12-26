@@ -4,37 +4,83 @@
     _HomeTestimonialComponent
 *@
 
-<div id="testimonial"  class="container-xxl py-5">
+
+<!-- Testimonial Start -->
+<div id="testimonial" class="container-xxl py-5">
     <div class="container py-5">
         <div class="row g-5">
+
+            <!-- SOL METİN -->
             <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
-                <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">Müşteri Yorumları</div>
+                <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">
+                    Müşteri Yorumları
+                </div>
+
                 <h1 class="mb-4">Müşterilerimiz Ne Diyor!</h1>
+
                 <p class="mb-4">
-                    Binlerce mutlu müşterimizin deneyimlerinden ilham alın. Her gün yüzlerce işletme, dijital dönüşüm yolculuğunda bize güveniyor. Gerçek kullanıcı hikayelerini keşfedin ve neden bizi tercih ettiklerini öğrenin.
+                    Binlerce mutlu müşterimizin deneyimlerinden ilham alın.
+                    Dijital dönüşüm yolculuğunda neden bizi tercih ettiklerini keşfedin.
                 </p>
 
+                <a class="btn btn-primary rounded-pill px-4" href="/iletisim">
+                    Daha Fazla
+                </a>
+            </div>
+
+            <!-- SAĞ CAROUSEL -->
             <div class="col-lg-7 wow fadeIn" data-wow-delay="0.5s">
                 <div class="owl-carousel testimonial-carousel border-start border-primary">
-                    @foreach(var item in Model)
-                        {
-                            <div class="testimonial-item ps-5">
-                                <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                                <p class="fs-4">@item.Comment</p>
-                                <div class="d-flex align-items-center">
-                                    <img class="img-fluid flex-shrink-0 rounded-circle" src="@Url.Content(item.ImageUrl)"
-                                         style="width: 60px; height: 60px;">
-                                    <div class="ps-3">
-                                        <h5 class="mb-1">@item.Name</h5>
-                                        <span>@item.Title</span>
-                                    </div>
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="testimonial-item ps-5">
+                            <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+
+                            <p class="fs-4">
+                                @item.Comment
+                            </p>
+
+                            <div class="d-flex align-items-center">
+                                <img class="img-fluid flex-shrink-0 rounded-circle"
+                                     src="@Url.Content(item.ImageUrl)"
+                                     style="width: 60px; height: 60px; object-fit:cover;"
+                                     alt="@item.Name" />
+
+                                <div class="ps-3">
+                                    <h5 class="mb-1">@item.Name</h5>
+                                    <span>@item.Title</span>
                                 </div>
                             </div>
+                        </div>
+                    }
 
-                        }
-                
                 </div>
             </div>
+
         </div>
     </div>
 </div>
+<!-- Testimonial End -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        // WOW init
+        if (typeof WOW === "function") {
+            new WOW().init();
+        }
+
+        // Testimonial Carousel
+        if ($('.testimonial-carousel').length) {
+            $('.testimonial-carousel').owlCarousel({
+                autoplay: true,
+                smartSpeed: 1000,
+                items: 1,
+                loop: true,
+                dots: true,
+                nav: false
+            });
+        }
+
+    });
+</script>
