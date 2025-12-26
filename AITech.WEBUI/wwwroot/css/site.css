@@ -20,3 +20,17 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+@keyframes aiFloat {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}

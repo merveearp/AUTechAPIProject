@@ -1,5 +1,6 @@
 using AITech.WEBUI.DTOs.UserMessageDtos;
 using AITech.WEBUI.Models;
+using AITech.WEBUI.Services.GeminiServices;
 using AITech.WEBUI.Services.ProjectService;
 using AITech.WEBUI.Services.UserMessageServices;
 using Microsoft.AspNetCore.Mvc;
@@ -12,11 +13,14 @@ namespace AITech.WEBUI.Controllers
     {
         private readonly IProjectService _projectService;
         private readonly IUserMessageService _userMessageService;
+        private readonly IGeminiService _geminiService;
 
-        public HomeController(IProjectService projectService, IUserMessageService userMessageService)
+
+        public HomeController(IProjectService projectService, IUserMessageService userMessageService, IGeminiService geminiService)
         {
             _projectService = projectService;
             _userMessageService = userMessageService;
+            _geminiService = geminiService;
         }
 
         public IActionResult Index()
@@ -24,6 +28,16 @@ namespace AITech.WEBUI.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Index(string prompt)
+        {
+            var response = await _geminiService.GetGeminiDataAsync(prompt);
+            if (response != null)
+            {
+                ViewBag.response = response;
+            }
+            return View();
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetById(int id)
@@ -62,6 +76,11 @@ namespace AITech.WEBUI.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+
+
+
+
 
 
     }
