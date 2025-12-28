@@ -27,13 +27,13 @@ namespace AITech.Business.Services.UserServices
         public async Task CreateAsync(RegisterUserDto registerDto)
         {
             var emailExist = await _userManager.FindByEmailAsync(registerDto.Email);
-            if(emailExist != null)
+            if (emailExist != null)
             {
                 throw new Exception("Bu Email Adresi  Kaydı daha önceden bulunmaktadır");
 
             }
             var userExist = await _userManager.FindByNameAsync(registerDto.UserName);
-            if(userExist != null)
+            if (userExist != null)
             {
                 throw new Exception("Bu Kullanıcı Adı Kullanılmaktadır");
 
@@ -44,31 +44,24 @@ namespace AITech.Business.Services.UserServices
                 LastName = registerDto.LastName,
                 UserName = registerDto.UserName,
                 Email = registerDto.Email,
-               
+
             };
 
-            var result = await _userManager.CreateAsync(user,registerDto.Password);
-            
+            var result = await _userManager.CreateAsync(user, registerDto.Password);
+
         }
 
         public async Task<LoginResponseDto> LoginAsync(LoginUserDto userDto)
         {
             var user = await _userManager.FindByNameAsync(userDto.UserName);
             if (user == null)
-            {
                 throw new Exception("Kullanıcı Bulunamadı!");
-         
-            }
 
-            var result = await _signInManager.CheckPasswordSignInAsync(user, userDto.Password,false);
+            var result = await _signInManager.CheckPasswordSignInAsync(user, userDto.Password, false);
             if (!result.Succeeded)
-            {
                 throw new Exception("Email veya şifre hatalı");
-            }
 
-            var token = _tokenService.CreateToken(user);
-            return token;
-
+            return await _tokenService.CreateToken(user);
         }
 
     }

@@ -1,11 +1,13 @@
 ﻿using AITech.WEBUI.DTOs.AboutItemDtos;
 using AITech.WEBUI.DTOs.CategoryDtos;
 using AITech.WEBUI.Services.AboutItemServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AITech.WEBUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+   
 
     public class AboutItemController(IAboutItemService _aboutItemService ) : Controller
     {

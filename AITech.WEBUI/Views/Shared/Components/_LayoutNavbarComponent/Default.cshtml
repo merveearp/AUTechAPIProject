@@ -1,25 +1,37 @@
-﻿
-@*
+﻿@*
     _LayoutNavbarComponent
 *@
 <div class="container-fluid sticky-top">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark p-0">
-            <a href="index.html" class="navbar-brand">
-                <h1 class="text-white">AI<span class="text-dark">.</span>Tech</h1>
+
+            <!-- Logo -->
+            <a asp-controller="Home" asp-action="Index" class="navbar-brand">
+                <h1 class="text-white m-0">
+                    AI<span class="text-dark">.</span>Tech
+                </h1>
             </a>
-            <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
+
+            <!-- Mobile Toggle -->
+            <button class="navbar-toggler ms-auto" type="button"
+                    data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto">
+
+                <!-- Menü -->
+                <div class="navbar-nav ms-auto me-4">
                     <a href="#hero" class="nav-item nav-link active">Anasayfa</a>
                     <a href="#about" class="nav-item nav-link">Hakkımızda</a>
                     <a href="#service" class="nav-item nav-link">Hizmetlerimiz</a>
                     <a href="#project" class="nav-item nav-link">Projelerimiz</a>
+
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Sayfalar</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            Sayfalar
+                        </a>
                         <div class="dropdown-menu bg-light mt-2">
                             <a href="#choose" class="dropdown-item">Öne Çıkan Alan</a>
                             <a href="#team" class="dropdown-item">Ekibimiz</a>
@@ -27,13 +39,26 @@
                             <a href="#testimonial" class="dropdown-item">Referanslarımız</a>
                         </div>
                     </div>
+
                     <a href="#contact" class="nav-item nav-link">İletişim</a>
-                    <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="nav-item nav-link">Panel</a>
-                    <a asp-controller="User" asp-action="Login" class="nav-item nav-link">Giriş Yap</a>
-                    <a asp-controller="User" asp-action="Register" class="nav-item nav-link">Üye ol</a>
+                    <a asp-controller="User" asp-action="Login"
+                       class="nav-item nav-link text-warning">
+                        Panel
+                    </a>
                 </div>
-                <butaton type="button" class="btn text-white p-0 d-none d-lg-block" data-bs-toggle="modal"
-                         data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
+
+                <!-- Auth Butonları -->
+                <div class="d-flex gap-2">
+                    <a asp-controller="User" asp-action="Login"
+                       class="btn btn-primary px-4">
+                        Giriş Yap
+                    </a>
+                    <a asp-controller="User" asp-action="Register"
+                       class="btn btn-primary px-4">
+                        Üye Ol
+                    </a>
+                </div>
+
             </div>
         </nav>
     </div>

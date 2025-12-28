@@ -10,6 +10,6 @@ namespace AITech.Business.Services.TokenServices
 {
     public interface ITokenService
     {
-        LoginResponseDto CreateToken(AppUser user);
+        Task<LoginResponseDto> CreateToken(AppUser user);
     }
 }

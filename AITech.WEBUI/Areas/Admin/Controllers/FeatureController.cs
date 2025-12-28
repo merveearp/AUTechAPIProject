@@ -1,13 +1,15 @@
 ﻿using AITech.WEBUI.DTOs.FeatureDtos;
 using AITech.WEBUI.DTOs.SocialDtos;
 using AITech.WEBUI.Services.FeatureServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AITech.WEBUI.Areas.Admin.Controllers
 {
+        [Area("Admin")]
+    
     public class FeatureController(IFeatureService _featureService) : Controller
     {
-        [Area("Admin")]
         public async Task<IActionResult> Index()
         {
             var entities = await _featureService.GetAllAsync();

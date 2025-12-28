@@ -1,11 +1,13 @@
 ﻿
 using AITech.WEBUI.DTOs.ContactDtos;
 using AITech.WEBUI.Services.ContactServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AITech.WEBUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+ 
     public class ContactController(IContactService _contactService) : Controller
     {
        

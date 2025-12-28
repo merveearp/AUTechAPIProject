@@ -2,12 +2,13 @@
 using AITech.WEBUI.DTOs.ChooseDtos;
 using AITech.WEBUI.DTOs.ChooseItemDtos;
 using AITech.WEBUI.Services.ChooseServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AITech.WEBUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-
+   
     public class ChooseController(IChooseService _chooseService) : Controller
     {
        

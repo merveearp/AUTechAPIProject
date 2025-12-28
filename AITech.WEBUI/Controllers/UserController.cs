@@ -59,6 +59,7 @@ namespace AITech.WEBUI.Controllers
                     "TokenExpire",
                     loginResponse.ExpireDate.ToString("O")
                 );
+
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
 
             }

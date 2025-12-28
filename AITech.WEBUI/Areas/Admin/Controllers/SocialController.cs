@@ -1,12 +1,14 @@
 ﻿using AITech.WEBUI.DTOs.FAQDtos;
 using AITech.WEBUI.DTOs.SocialDtos;
 using AITech.WEBUI.Services.SocialServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AITech.WEBUI.Areas.Admin.Controllers
 {
 
     [Area("Admin")]
+   
     public class SocialController(ISocialService _socialService) : Controller
     {
         public async Task<IActionResult> Index()

@@ -1,5 +1,6 @@
 ﻿using AITech.WEBUI.DTOs.ChooseItemDtos;
 using AITech.WEBUI.Services.ChooseItemServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AITech.WEBUI.Areas.Admin.Controllers
@@ -8,8 +9,7 @@ namespace AITech.WEBUI.Areas.Admin.Controllers
     [Area("Admin")]
     public class ChooseItemController(IChooseItemService _chooseService ) : Controller
     {
-        [Area("Admin")]
-
+        
         public async Task<IActionResult> Index()
         {
             var entities = await _chooseService.GetAllAsync();

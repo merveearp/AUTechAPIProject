@@ -40,7 +40,7 @@ namespace AITech.WEBUI.Services.GeminiServices
                 generationConfig = new GenerationConfig
                 {
                     temperature =0.7f,
-                    maxOutputTokens=100000
+                    maxOutputTokens=10000
                 }
             };
 

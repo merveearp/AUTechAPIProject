@@ -2,11 +2,13 @@
 using AITech.WEBUI.DTOs.BannerDtos;
 using AITech.WEBUI.DTOs.ChooseDtos;
 using AITech.WEBUI.Services.BannerServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AITech.WEBUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+   
     public class BannerController(IBannerService _bannerService) : Controller
     {
 

@@ -14,27 +14,45 @@
     <h3>Yönetim Paneli</h3>
 </div>
 
-<div class="col-12 col-lg-3">
-    <div class="profile-card">
-        <div class="profile-avatar">
-            <img src="~/ADMIN/dist/assets/images/faces/1.jpg" alt="Profil">
-        </div>
-        <div class="profile-info">
-            <h5 class="profile-name">John Duck</h5>
-            <p class="profile-role">Yönetici</p>
-        </div>
-        <div class="profile-stats">
-            <div class="profile-stat-item">
-                <span class="profile-stat-value">@Model.Count</span>
-                <span class="profile-stat-label">Mesaj</span>
+<div class="container-fluid px-3 mb-4">
+    <div class="card shadow-sm border-0">
+        <div class="card-body d-flex align-items-center justify-content-between flex-wrap gap-4">
+
+            <!-- SOL -->
+            <div class="d-flex align-items-center gap-3">
+                <div class="profile-avatar m-0">
+                    <img src="~/ADMIN/dist/assets/images/faces/1.jpg" alt="Profil">
+                </div>
+                <div>
+                    <h5 class="mb-1 fw-bold">Admin</h5>
+                    <span class="badge bg-primary">Yönetici</span>
+                </div>
             </div>
-            <div class="profile-stat-item">
-                <span class="profile-stat-value">@Model.Count(x => !x.IsCalled)</span>
-                <span class="profile-stat-label">Bekleyen</span>
+
+            <!-- SAĞ -->
+            <div class="d-flex gap-4">
+                <div class="text-center">
+                    <div class="fw-bold fs-4 text-primary">@Model.Count</div>
+                    <div class="text-muted small">Toplam Mesaj</div>
+                </div>
+                <div class="text-center">
+                    <div class="fw-bold fs-4 text-warning">
+                        @Model.Count(x => !x.IsCalled)
+                    </div>
+                    <div class="text-muted small">Bekleyen</div>
+                </div>
+                <div class="text-center">
+                    <div class="fw-bold fs-4 text-success">
+                        @Model.Count(x => x.IsCalled)
+                    </div>
+                    <div class="text-muted small">Tamamlanan</div>
+                </div>
             </div>
+
         </div>
     </div>
 </div>
+
 
 
 <div class="container-fluid px-3">

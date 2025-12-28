@@ -65,7 +65,7 @@ namespace AITech.WEBUI.Controllers
             if (!ModelState.IsValid)
             {
                 TempData["UserMessageError"] =
-                    "Lütfen zorunlu alanlarý doldurunuz.";
+                    "Lütfen mesajýnýzý iletmek için bütün zorunlu alanlarý doldurunuz.";
                 return RedirectToAction("Index", "Home");
             }
 

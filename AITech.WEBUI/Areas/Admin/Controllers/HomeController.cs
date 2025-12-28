@@ -1,10 +1,12 @@
 ﻿using AITech.WEBUI.DTOs.UserMessageDtos;
 using AITech.WEBUI.Services.UserMessageServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AITech.WEBUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+   
     public class HomeController(IUserMessageService _userMessage) : Controller
     {
         public async Task<IActionResult> Index()

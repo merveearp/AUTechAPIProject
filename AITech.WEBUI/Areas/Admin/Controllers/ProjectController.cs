@@ -1,12 +1,14 @@
 ﻿using AITech.WEBUI.DTOs.ProjectDtos;
 using AITech.WEBUI.Services.CategoryServices;
 using AITech.WEBUI.Services.ProjectService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AITech.WEBUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+   
     public class ProjectController(IProjectService _projectService,ICategoryService _categoryService) : Controller
     {
         private async Task GetCategoriesAsync()

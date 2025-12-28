@@ -22,7 +22,7 @@ namespace AITech.Business.Services.TokenServices
         }
 
 
-        public LoginResponseDto CreateToken(AppUser user)
+        public async Task<LoginResponseDto> CreateToken(AppUser user)
         {
             
             var claims = new List<Claim>
@@ -67,5 +67,7 @@ namespace AITech.Business.Services.TokenServices
                 ExpireDate = expireDate
             };
         }
+
+       
     }
 }

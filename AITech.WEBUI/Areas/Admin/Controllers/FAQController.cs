@@ -1,10 +1,12 @@
 ﻿using AITech.WEBUI.DTOs.FAQDtos;
 using AITech.WEBUI.Services.FAOServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AITech.WEBUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+ 
 
     public class FAQController(IFAQService _fAQService) : Controller
     {

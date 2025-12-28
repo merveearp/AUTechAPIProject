@@ -1,10 +1,12 @@
 ﻿using AITech.WEBUI.DTOs.CategoryDtos;
 using AITech.WEBUI.Services.CategoryServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AITech.WEBUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    
     public class CategoryController(ICategoryService _categoryService) : Controller
     {
         public async Task<IActionResult> Index()

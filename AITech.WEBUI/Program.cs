@@ -1,4 +1,5 @@
 using AITech.WEBUI.Extensions;
+using Microsoft.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +22,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();  
 app.UseAuthorization();
+
 
 app.MapControllerRoute(
             name: "areas",

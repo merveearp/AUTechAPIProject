@@ -1,9 +1,11 @@
 ﻿using AITech.WEBUI.Services.GeminiServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AITech.WEBUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+  
     public class GeminiController(IGeminiService _geminiService) : Controller
     {
         [HttpGet]
