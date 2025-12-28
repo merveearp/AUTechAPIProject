@@ -2,10 +2,10 @@
     GeminiChat ViewComponent
 *@
 
-<!-- AI ROBOT (SABİT – SAĞ ALT) -->
+
 <div id="ai-robot" title="Gemini AI">🤖</div>
 
-<!-- AI CHAT PENCERESİ -->
+
 <div id="ai-chat">
     <div class="ai-chat-header">
         🤖💬 Gemini AI
@@ -24,8 +24,123 @@
     </div>
 </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const aiRobot = document.getElementById("ai-robot");
+        const aiChat = document.getElementById("ai-chat");
+        const closeBtn = document.getElementById("ai-chat-close");
+
+        const sendBtn = document.getElementById("ai-send");
+        const input = document.getElementById("ai-input");
+        const chatBody = document.getElementById("ai-chat-body");
+
+
+        if (aiRobot && aiChat) {
+            aiRobot.addEventListener("click", () => {
+                aiChat.style.display =
+                    aiChat.style.display === "flex" ? "none" : "flex";
+            });
+        }
+
+        if (closeBtn) {
+            closeBtn.addEventListener("click", () => {
+                aiChat.style.display = "none";
+            });
+        }
+
+        if (!sendBtn || !input || !chatBody) return;
+
+        function addUserMessage(message) {
+            const div = document.createElement("div");
+            div.className = "ai-message user";
+            div.innerText = message;
+            chatBody.appendChild(div);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function addAiMessage(message) {
+            const div = document.createElement("div");
+            div.className = "ai-message ai";
+            div.innerText = message;
+            chatBody.appendChild(div);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function addYesNoButtons() {
+            const container = document.createElement("div");
+            container.className = "ai-message ai";
+
+            container.innerHTML = `
+                <div style="margin-top:8px;">
+                    <button id="ai-yes" style="margin-right:6px;">Evet</button>
+                    <button id="ai-no">Hayır</button>
+                </div>
+            `;
+
+            chatBody.appendChild(container);
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            document.getElementById("ai-yes").onclick = () => {
+                window.location.hash = "contact";
+                aiChat.style.display = "none";
+            };
+
+            document.getElementById("ai-no").onclick = () => {
+                addAiMessage("Tamam 👍 Başka nasıl yardımcı olabilirim?");
+                container.remove();
+            };
+        }
+
+        sendBtn.addEventListener("click", sendMessage);
+
+        input.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const message = input.value.trim();
+            if (message === "") return;
+
+            addUserMessage(message);
+            input.value = "";
+
+            addAiMessage("⏳ Gemini düşünüyor...");
+
+            fetch("/Gemini/Gemini", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "prompt=" + encodeURIComponent(message)
+            })
+            .then(res => res.json())
+            .then(data => {
+                const thinking = chatBody.querySelector(".ai-message.ai:last-child");
+                if (thinking) thinking.remove();
+
+                addAiMessage(data.answer);
+
+
+                if (data.answer.toLowerCase().includes("mesaj bırakmak ister misiniz")) {
+                    addYesNoButtons();
+                }
+            })
+            .catch(err => {
+                const thinking = chatBody.querySelector(".ai-message.ai:last-child");
+                if (thinking) thinking.remove();
+
+                addAiMessage("⚠️ Bir hata oluştu.");
+                console.error(err);
+            });
+        }
+    });
+</script>
+
 <style>
-    /* CHAT */
+   
     #ai-chat {
         position: fixed;
         bottom: 110px;
@@ -119,133 +234,41 @@
         font-size: 30px;
         color: #fff;
         cursor: pointer;
-        animation: aiFloat 3s ease-in-out infinite;
+        animation: aiFloat 2.6s cubic-bezier(.45,.05,.55,.95) infinite;
         z-index: 99999;
         box-shadow: 0 12px 35px rgba(0,0,0,.35);
     }
 
-        aiFloat {
-        0%, 100% {
-            transform: translateY(0);
+    @@keyframes aiFloat {
+        0% {
+            transform: translateY(0) scale(1);
         }
 
-        50% {
-            transform: translateY(-10px);
+        20% {
+            transform: translateY(-6px) scale(1.02);
+        }
+
+        40% {
+            transform: translateY(-14px) scale(1.05);
+        }
+
+        55% {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        70% {
+            transform: translateY(-16px) scale(1.04);
+        }
+
+        85% {
+            transform: translateY(-8px) scale(1.01);
+        }
+
+        100% {
+            transform: translateY(0) scale(1);
         }
     }
+
 </style>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
 
-        const aiRobot = document.getElementById("ai-robot");
-        const aiChat = document.getElementById("ai-chat");
-        const closeBtn = document.getElementById("ai-chat-close");
-
-        const sendBtn = document.getElementById("ai-send");
-        const input = document.getElementById("ai-input");
-        const chatBody = document.getElementById("ai-chat-body");
-
-        
-        if (aiRobot && aiChat) {
-            aiRobot.addEventListener("click", () => {
-                aiChat.style.display =
-                    aiChat.style.display === "flex" ? "none" : "flex";
-            });
-        }
-
-        if (closeBtn) {
-            closeBtn.addEventListener("click", () => {
-                aiChat.style.display = "none";
-            });
-        }
-
-        if (!sendBtn || !input || !chatBody) return;
-
-        function addUserMessage(message) {
-            const div = document.createElement("div");
-            div.className = "ai-message user";
-            div.innerText = message;
-            chatBody.appendChild(div);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
-
-        function addAiMessage(message) {
-            const div = document.createElement("div");
-            div.className = "ai-message ai";
-            div.innerText = message;
-            chatBody.appendChild(div);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
-
-        function addYesNoButtons() {
-            const container = document.createElement("div");
-            container.className = "ai-message ai";
-
-            container.innerHTML = `
-                <div style="margin-top:8px;">
-                    <button id="ai-yes" style="margin-right:6px;">Evet</button>
-                    <button id="ai-no">Hayır</button>
-                </div>
-            `;
-
-            chatBody.appendChild(container);
-            chatBody.scrollTop = chatBody.scrollHeight;
-
-            document.getElementById("ai-yes").onclick = () => {
-                window.location.hash = "contact";
-                aiChat.style.display = "none";
-            };
-
-            document.getElementById("ai-no").onclick = () => {
-                addAiMessage("Tamam 👍 Başka nasıl yardımcı olabilirim?");
-                container.remove();
-            };
-        }
-
-        sendBtn.addEventListener("click", sendMessage);
-
-        input.addEventListener("keypress", function (e) {
-            if (e.key === "Enter") {
-                sendMessage();
-            }
-        });
-
-        function sendMessage() {
-            const message = input.value.trim();
-            if (message === "") return;
-
-            addUserMessage(message);
-            input.value = "";
-
-            addAiMessage("⏳ Gemini düşünüyor...");
-
-            fetch("/Gemini/Gemini", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: "prompt=" + encodeURIComponent(message)
-            })
-            .then(res => res.json())
-            .then(data => {
-                const thinking = chatBody.querySelector(".ai-message.ai:last-child");
-                if (thinking) thinking.remove();
-
-                addAiMessage(data.answer);
-
-                
-                if (data.answer.toLowerCase().includes("mesaj bırakmak ister misiniz")) {
-                    addYesNoButtons();
-                }
-            })
-            .catch(err => {
-                const thinking = chatBody.querySelector(".ai-message.ai:last-child");
-                if (thinking) thinking.remove();
-
-                addAiMessage("⚠️ Bir hata oluştu.");
-                console.error(err);
-            });
-        }
-    });
-</script>

@@ -24,18 +24,15 @@
                      alt="@item.Title"
                      style="height:250px; object-fit:cover;" />
 
-                            <a class="case-overlay text-decoration-none">
-                                <small class="text-uppercase">
-                                    @item.Category.Name
-                                </small>
+                            <a class="case-overlay text-decoration-none project-detail-btn"
+                               data-id="@item.Id"
+                               href="javascript:void(0);">
 
-                                <h5 class="lh-base text-white mb-3">
-                                    @item.Title
-                                </h5>
+                                <small class="text-uppercase">@item.Category.Name</small>
 
-                                <span class="btn btn-square btn-info project-detail-btn"
-                                      data-id="@item.Id"
-                                      style="cursor:pointer;">
+                                <h5 class="lh-base text-white mb-3">@item.Title</h5>
+
+                                <span class="btn btn-square btn-info">
                                     <i class="fa fa-arrow-right"></i>
                                 </span>
                             </a>
@@ -75,35 +72,39 @@
     </div>
 </div>
 
-
 <script>
-    $(document).on("click", ".project-detail-btn", function (e) {
+    document.addEventListener("DOMContentLoaded", function () {
 
-        e.preventDefault();
-        e.stopPropagation(); 
+        document.querySelectorAll(".project-detail-btn").forEach(btn => {
 
-        const projectId = $(this).data("id");
+            btn.addEventListener("click", function (e) {
+                e.preventDefault();
 
-        $.ajax({
-            url: `/Home/GetById?id=${projectId}`,
-            type: "GET",
-            success: function (data) {
+                const projectId = this.dataset.id;
+                console.log("Clicked project id:", projectId);
 
-                $("#projectTitle").text(data.title);
-                $("#projectDescription").text(data.description);
-                $("#projectImage").attr("src", data.imageUrl);
+                fetch('@Url.Action("GetById", "Home")' + '?id=' + projectId)
+                    .then(res => res.json())
+                    .then(data => {
 
-                const modal = new bootstrap.Modal(
-                    document.getElementById("projectDetailModal")
-                );
-                modal.show();
-            },
-            error: function () {
-                alert("Proje detayları yüklenirken hata oluştu.");
-            }
+                        document.getElementById("projectTitle").innerText = data.title;
+                        document.getElementById("projectDescription").innerText = data.description;
+
+                        const img = document.getElementById("projectImage");
+                        if (data.imageUrl) {
+                            img.src = data.imageUrl;
+                            img.style.display = "block";
+                        } else {
+                            img.style.display = "none";
+                        }
+
+                        new bootstrap.Modal(
+                            document.getElementById("projectDetailModal")
+                        ).show();
+                    });
+            });
+
         });
     });
-
 </script>
-
 
